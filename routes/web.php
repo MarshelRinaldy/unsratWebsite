@@ -3,21 +3,37 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PelangganController;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('admin.loginAdmin');
+    return view('pelanggan.loginPelanggan');
 });
 
-Route::get('/admin-dashboard', function () {
-    return view('admin.dashboardAdmin');
-});
+
 
 
 Route::get('/registrasi_pelanggan', [PelangganController::class, 'registrasi_pelanggan'])->name('registrasi_pelanggan');
 Route::post('/simpan_pelanggan', [PelangganController::class, 'simpan_pelanggan'])->name('simpan_pelanggan');
 
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-Route::get('/dashboard_pelanggan', [PelangganController::class, 'dashboard_pelanggan'])->name('dashboard_pelanggan');
-
+//LOGIN
 Route::get('/login_admin_view', [LoginController::class, 'login_admin_view'])->name('login_admin_view');
+
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/login/admin', [LoginController::class, 'login_admin'])->name('login_admin');
+
+
+//DASHBOARD
+Route::get('/dashboard_pelanggan', [PelangganController::class, 'dashboard_pelanggan'])->name('dashboard_pelanggan');
+Route::get('/admin-dashboard', function () {
+    return view('admin.dashboardAdmin');
+})->name('dashboard_admin');
+
+
+//ADMIN
+Route::get('/menu_admin', [AdminController::class, 'menu_admin'])->name('menu_admin');
+Route::get('/kategori_admin', [AdminController::class, 'kategori_admin'])->name('kategori_admin');
+
+Route::post('/store_kategori', [AdminController::class, 'store_kategori'])->name('store_kategori');
+
+

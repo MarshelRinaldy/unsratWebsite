@@ -4,12 +4,373 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Rumah Makan Dapoer Boulevard</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            background-color: #ebebeb;
+        }
+
+        .navbar {
+            background-color: #000000 !important;
+        }
+
+        .main-content {
+            background-image: url('../images/bg1.jpg');
+            /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            height: 650px;
+            /* Full height minus navbar height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .main-content h1,
+        .main-content h2 {
+            color: white;
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        .main-content h1 {
+            font-size: 3rem;
+        }
+
+        .main-content h2 {
+            font-size: 2rem;
+        }
+
+        .main-content .btn-dark {
+            background-color: #333;
+            border-color: #333;
+        }
+
+        .card-deck {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0 25px;
+
+        }
+
+        .card {
+            margin: 15px 15px;
+            width: 100px;
+
+        }
+
+        .card img {
+            height: 200px;
+            width: 100%;
+        }
+
+        .card .card-body {
+            text-align: center;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            line-height: 1.5;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1170px;
+            margin: auto;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .footer {
+            background-color: #24262b;
+            padding: 70px 0;
+        }
+
+        .footer-col {
+            width: 25%;
+            padding: 0 15px;
+        }
+
+        .footer-col h4 {
+            font-size: 18px;
+            color: #ffffff;
+            text-transform: capitalize;
+            margin-bottom: 35px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .footer-col h4::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            background-color: #FF7A00;
+            height: 2px;
+            box-sizing: border-box;
+            width: 50px;
+        }
+
+        .footer-col ul li:not(:last-child) {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            font-size: 16px;
+            text-transform: capitalize;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 300;
+            color: #bbbbbb;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: #ffffff;
+            padding-left: 8px;
+        }
+
+        .footer-col .social-links a {
+            display: inline-block;
+            height: 40px;
+            width: 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin: 0 10px 10px 0;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            color: #ffffff;
+            transition: all 0.5s ease;
+        }
+
+        .footer-col .social-links a:hover {
+            color: #24262b;
+            background-color: #ffffff;
+        }
+
+        /*responsive*/
+        @media (max-width: 767px) {
+            .footer-col {
+                width: 50%;
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 574px) {
+            .footer-col {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <p>ini merupakan dashboard pelanggan ketika sudah login</p>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Rumah Makan Dapoer Boulevard</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Beranda</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Kategori</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Keranjang <span class="badge badge-danger">0</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Tentang Kami</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Admin Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid main-content">
+        <div>
+            <h1>Selamat Datang di</h1>
+            <h2>Rumah Makan Dapoer Boulevard</h2>
+            <button class="btn btn-dark mt-3">ORDER</button>
+        </div>
+    </div>
+
+    <div class="menu text-center">
+        <div>
+            <h2>Menu</h2>
+        </div>
+    </div>
+
+    <div class="card-deck">
+        <div class="card">
+            <img src="../images/makanan1.jpeg" class="card-img-top" alt="Nama Makanan">
+            <div class="card-body">
+                <h5 class="card-title">Nama Makanan</h5>
+                <p class="card-text">Deskripsi singkat mengenai makanan ini. Deskripsi singkat mengenai makanan ini.</p>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#productModal"
+                    onclick="showProductDetails('Nama Makanan', '../images/makanan1.jpeg', 'Deskripsi singkat mengenai makanan ini.')">View</button>
+            </div>
+        </div>
+        <div class="card">
+            <img src="../images/makanan1.jpeg" class="card-img-top" alt="Nama Makanan">
+            <div class="card-body">
+                <h5 class="card-title">Nama Makanan</h5>
+                <p class="card-text">Deskripsi singkat mengenai makanan ini. Deskripsi singkat mengenai makanan ini.</p>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#productModal"
+                    onclick="showProductDetails('Nama Makanan', '../images/makanan1.jpeg', 'Deskripsi singkat mengenai makanan ini.')">View</button>
+            </div>
+        </div>
+        <div class="card">
+            <img src="../images/makanan1.jpeg" class="card-img-top" alt="Nama Makanan">
+            <div class="card-body">
+                <h5 class="card-title">Nama Makanan</h5>
+                <p class="card-text">Deskripsi singkat mengenai makanan ini. Deskripsi singkat mengenai makanan ini.</p>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#productModal"
+                    onclick="showProductDetails('Nama Makanan', '../images/makanan1.jpeg', 'Deskripsi singkat mengenai makanan ini.')">View</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel">Detail Produk</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img id="productImage" src="" class="img-fluid" alt="Product Image">
+                        </div>
+                        <div class="col-md-6">
+                            <h4 id="productName">Nama Makanan</h4>
+                            <p id="productDescription">Deskripsi singkat mengenai makanan ini.</p>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        id="decrementBtn">-</button>
+                                </div>
+                                <input type="text" class="form-control" id="productQuantity" value="1"
+                                    readonly>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        id="incrementBtn">+</button>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary">Tambahkan ke Keranjang</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 50px"></div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>company</h4>
+                    <ul>
+                        <li><a href="#">about us</a></li>
+                        <li><a href="#">our services</a></li>
+                        <li><a href="#">privacy policy</a></li>
+                        <li><a href="#">affiliate program</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>get help</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">shipping</a></li>
+                        <li><a href="#">returns</a></li>
+                        <li><a href="#">order status</a></li>
+                        <li><a href="#">payment options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>online shop</h4>
+                    <ul>
+                        <li><a href="#">watch</a></li>
+                        <li><a href="#">bag</a></li>
+                        <li><a href="#">shoes</a></li>
+                        <li><a href="#">dress</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>follow us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Function to show product details in the modal
+        function showProductDetails(name, image, description) {
+            document.getElementById('productName').innerText = name;
+            document.getElementById('productImage').src = image;
+            document.getElementById('productDescription').innerText = description;
+        }
+
+        // Increment and decrement quantity
+        document.getElementById('incrementBtn').addEventListener('click', function() {
+            let quantity = parseInt(document.getElementById('productQuantity').value);
+            document.getElementById('productQuantity').value = quantity + 1;
+        });
+
+        document.getElementById('decrementBtn').addEventListener('click', function() {
+            let quantity = parseInt(document.getElementById('productQuantity').value);
+            if (quantity > 1) {
+                document.getElementById('productQuantity').value = quantity - 1;
+            }
+        });
+    </script>
 </body>
 
 </html>

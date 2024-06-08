@@ -215,6 +215,20 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="sidebar-item">
+                    <a href="{{ route('menu_admin') }}" class="sidebar-link">
+                        <i class="lni lni-agenda"></i>
+                        <span>Menu</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="{{ route('kategori_admin') }}" class="sidebar-link">
+                        <i class="lni lni-agenda"></i>
+                        <span>Kategori</span>
+                    </a>
+                </li>
             </ul>
 
             <div class="sidebar-footer">

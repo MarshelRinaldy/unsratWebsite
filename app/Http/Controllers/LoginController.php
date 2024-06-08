@@ -22,11 +22,11 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            // Redirect ke dashboard pelanggan jika berhasil login
+          
             return redirect()->route('dashboard_pelanggan');
         }
 
-        // Kembali ke halaman login dengan pesan error jika login gagal
+      
         return redirect()->back()->with('error', 'Email atau Password Salah');
 
         // ->with('success', 'Berhasil Membatalkan Transaksi Tersebut');
@@ -35,5 +35,24 @@ class LoginController extends Controller
 
      public function login_admin_view(){
         return view('admin.loginAdmin');
+    }
+
+     public function login_admin(Request $request)
+    {
+      
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required|min:6',
+        ]);
+
+        $credentials = $request->only('username', 'password');
+
+        if (Auth::guard('admin')->attempt($credentials)) {
+          
+            return redirect()->route('dashboard_admin');
+        }
+
+       
+        return redirect()->back()->with('error', 'Username atau Password Salah');
     }
 }

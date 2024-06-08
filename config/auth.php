@@ -45,6 +45,11 @@ return [
             'driver' => 'session',
             'provider' => 'pelanggan',
         ],
+
+        'admin' => [ // Tambahkan guard untuk Admin
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
     ],
 
     /*
@@ -73,6 +78,11 @@ return [
         'pelanggan' => [ // Tambahkan provider untuk Pelanggan
             'driver' => 'eloquent',
             'model' => App\Models\Pelanggan::class,
+        ],
+
+        'admin' => [ // Tambahkan provider untuk Admin
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
         ],
     ],
 
@@ -105,6 +115,13 @@ return [
 
         'pelanggan' => [ // Tambahkan konfigurasi reset password untuk Pelanggan
             'provider' => 'pelanggan',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'admin' => [ // Tambahkan konfigurasi reset password untuk Admin
+            'provider' => 'admin',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
