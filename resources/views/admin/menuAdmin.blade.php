@@ -18,7 +18,7 @@
             <!-- Menu Form -->
             <div class="col-md-4">
                 <h3 class="mb-4">Menu Form</h3>
-                <form action="{{ route('menu.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('store_menu') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="menu" class="form-label">Menu</label>
@@ -71,7 +71,7 @@
                     <table class="table table-hover table-bordered">
                         <thead class="table-light">
                             <tr>
-                                <th>#</th>
+                                <th>No</th>
                                 <th>Gambar</th>
                                 <th>ISI</th>
                                 <th>Aksi</th>
@@ -97,10 +97,8 @@
                                         <strong>Harga:</strong> {{ $menu->harga }}
                                     </td>
                                     <td>
-                                        <a href="{{ route('menu.edit', $menu->id) }}"
-                                            class="btn btn-sm btn-primary me-1">Edit</a>
-                                        <form action="{{ route('menu.delete', $menu->id) }}" method="POST"
-                                            style="display: inline-block;">
+                                        <a href="" class="btn btn-sm btn-primary me-1">Edit</a>
+                                        <form action="" method="POST" style="display: inline-block;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">Hapus</button>

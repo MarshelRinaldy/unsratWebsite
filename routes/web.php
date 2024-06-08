@@ -31,9 +31,13 @@ Route::get('/admin-dashboard', function () {
 
 
 //ADMIN
-Route::get('/menu_admin', [AdminController::class, 'menu_admin'])->name('menu_admin');
-Route::get('/kategori_admin', [AdminController::class, 'kategori_admin'])->name('kategori_admin');
 
+Route::get('/beranda_admin', [AdminController::class, 'beranda_admin'])->name('beranda_admin');
+
+Route::get('/menu_admin', [AdminController::class, 'menu_admin'])->name('menu_admin');
+Route::post('/store_menu', [AdminController::class, 'store_menu'])->name('store_menu');
+
+Route::get('/kategori_admin', [AdminController::class, 'kategori_admin'])->name('kategori_admin');
 Route::post('/store_kategori', [AdminController::class, 'store_kategori'])->name('store_kategori');
 
 

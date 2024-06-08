@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
+
+    //INI UNTUK BERANDA
+    public function beranda_admin(){
+        return view('admin.berandaAdmin');
+    }
+
+    //INI UNTUK MENU
     public function menu_admin(){
 
         $menus = Menu::all();
@@ -19,7 +26,7 @@ class AdminController extends Controller
 
     public function store_menu(Request $request)
     {
-        // Validate the incoming request data
+        
         $validated = $request->validate([
             'menu' => 'required',
             'description' => 'required',

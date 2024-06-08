@@ -194,26 +194,17 @@
 
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#transaksi" aria-expanded="false" aria-controls="transaksi">
+                    <a href="{{ route('beranda_admin') }}" class="sidebar-link">
                         <i class="lni lni-agenda"></i>
-                        <span>Transaksi</span>
+                        <span>Beranda</span>
                     </a>
-                    <ul id="transaksi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="" class="sidebar-link">Pesanan
-                                Diproses</a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="" class="sidebar-link">Pesanan Siap
-                                Dipickup</a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="" class="sidebar-link">Pesanan
-                                Telat
-                                Pembayaran</a>
-                        </li>
-                    </ul>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="" class="sidebar-link">
+                        <i class="lni lni-agenda"></i>
+                        <span>Pesanan</span>
+                    </a>
                 </li>
 
                 <li class="sidebar-item">
