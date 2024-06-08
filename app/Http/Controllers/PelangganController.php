@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Menu;
 use App\Models\Pelanggan;
 use Illuminate\Http\Request;
 
@@ -37,6 +38,8 @@ class PelangganController extends Controller
 
 
     public function dashboard_pelanggan(){
-        return view('pelanggan.dashboardPelanggan');
+
+        $menuItems = Menu::all(); // Retrieve all menu items
+        return view('pelanggan.dashboardPelanggan', compact('menuItems'));
     }
 }

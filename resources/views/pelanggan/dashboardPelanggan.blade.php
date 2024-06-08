@@ -63,7 +63,7 @@
 
         .card {
             margin: 15px 15px;
-            width: 100px;
+            width: 250px;
 
         }
 
@@ -233,33 +233,17 @@
     </div>
 
     <div class="card-deck">
-        <div class="card">
-            <img src="../images/makanan1.jpeg" class="card-img-top" alt="Nama Makanan">
-            <div class="card-body">
-                <h5 class="card-title">Nama Makanan</h5>
-                <p class="card-text">Deskripsi singkat mengenai makanan ini. Deskripsi singkat mengenai makanan ini.</p>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#productModal"
-                    onclick="showProductDetails('Nama Makanan', '../images/makanan1.jpeg', 'Deskripsi singkat mengenai makanan ini.')">View</button>
+        @foreach ($menuItems as $item)
+            <div class="card">
+                <img src="{{ Storage::url($item->image) }}" class="card-img-top" alt="{{ $item->nama }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $item->nama }}</h5>
+                    <p class="card-text">{{ $item->deskripsi }}</p>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#productModal"
+                        onclick="showProductDetails('{{ $item->nama }}', '{{ Storage::url($item->image) }}', '{{ $item->deskripsi }}')">View</button>
+                </div>
             </div>
-        </div>
-        <div class="card">
-            <img src="../images/makanan1.jpeg" class="card-img-top" alt="Nama Makanan">
-            <div class="card-body">
-                <h5 class="card-title">Nama Makanan</h5>
-                <p class="card-text">Deskripsi singkat mengenai makanan ini. Deskripsi singkat mengenai makanan ini.</p>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#productModal"
-                    onclick="showProductDetails('Nama Makanan', '../images/makanan1.jpeg', 'Deskripsi singkat mengenai makanan ini.')">View</button>
-            </div>
-        </div>
-        <div class="card">
-            <img src="../images/makanan1.jpeg" class="card-img-top" alt="Nama Makanan">
-            <div class="card-body">
-                <h5 class="card-title">Nama Makanan</h5>
-                <p class="card-text">Deskripsi singkat mengenai makanan ini. Deskripsi singkat mengenai makanan ini.</p>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#productModal"
-                    onclick="showProductDetails('Nama Makanan', '../images/makanan1.jpeg', 'Deskripsi singkat mengenai makanan ini.')">View</button>
-            </div>
-        </div>
+        @endforeach
     </div>
 
     <!-- Modal -->
@@ -281,13 +265,12 @@
                         <div class="col-md-6">
                             <h4 id="productName">Nama Makanan</h4>
                             <p id="productDescription">Deskripsi singkat mengenai makanan ini.</p>
-                            <div class="input-group mb-3">
+                            <div class="input-group mb3">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-outline-secondary" type="button"
                                         id="decrementBtn">-</button>
                                 </div>
-                                <input type="text" class="form-control" id="productQuantity" value="1"
-                                    readonly>
+                                <input type="text" class="form-control" id="productQuantity" value="1" readonly>
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button"
                                         id="incrementBtn">+</button>
@@ -351,14 +334,12 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        // Function to show product details in the modal
         function showProductDetails(name, image, description) {
             document.getElementById('productName').innerText = name;
             document.getElementById('productImage').src = image;
             document.getElementById('productDescription').innerText = description;
         }
 
-        // Increment and decrement quantity
         document.getElementById('incrementBtn').addEventListener('click', function() {
             let quantity = parseInt(document.getElementById('productQuantity').value);
             document.getElementById('productQuantity').value = quantity + 1;
@@ -371,6 +352,7 @@
             }
         });
     </script>
+
 </body>
 
 </html>
