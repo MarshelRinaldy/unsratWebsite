@@ -72,11 +72,7 @@
         </div>
     @endif
 
-    @if (session('error'))
-        <div class="alert alert-danger" role="alert">
-            {{ session('error') }}
-        </div>
-    @endif
+
     <div class="container-fluid vh-100 d-flex">
         <div class="row flex-fill">
             <div class="col-md-5 d-flex align-items-center justify-content-center bg-grey">

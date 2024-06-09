@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Models\Admin;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PelangganController;
-use App\Models\Admin;
-use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('pelanggan.loginPelanggan');
@@ -50,5 +51,13 @@ Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add
 Route::patch('/update-cart', [CartController::class, 'updateCart'])->name('update.cart');
 Route::delete('/remove-from-cart', [CartController::class, 'removeCart'])->name('remove.from.cart');
 
+
+
+//LOGOUT
+
+Route::get('/logout_admin', function () {
+    Auth::logout();
+    return redirect()->route('login_admin');
+})->name('logout_admin');
 
 
