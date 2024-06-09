@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PelangganController;
 use App\Models\Admin;
@@ -30,6 +31,8 @@ Route::get('/admin-dashboard', function () {
 })->name('dashboard_admin');
 
 
+
+
 //ADMIN
 
 Route::get('/beranda_admin', [AdminController::class, 'beranda_admin'])->name('beranda_admin');
@@ -39,5 +42,12 @@ Route::post('/store_menu', [AdminController::class, 'store_menu'])->name('store_
 
 Route::get('/kategori_admin', [AdminController::class, 'kategori_admin'])->name('kategori_admin');
 Route::post('/store_kategori', [AdminController::class, 'store_kategori'])->name('store_kategori');
+
+//CART
+Route::get('/keranjang_view', [CartController::class, 'keranjang_view'])->name('keranjang_view');
+Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add_to_cart');
+// Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
+Route::patch('/update-cart', [CartController::class, 'updateCart'])->name('update.cart');
+Route::delete('/remove-from-cart', [CartController::class, 'removeCart'])->name('remove.from.cart');
 
 

@@ -39,7 +39,9 @@ class PelangganController extends Controller
 
     public function dashboard_pelanggan(){
 
-        $menuItems = Menu::all(); // Retrieve all menu items
+        $menuItems = Menu::all(); 
         return view('pelanggan.dashboardPelanggan', compact('menuItems'));
     }
+
+    
 }

@@ -203,7 +203,8 @@
                     <a class="nav-link" href="#">Kategori</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Keranjang <span class="badge badge-danger">0</span></a>
+                    <a class="nav-link" href="{{ route('keranjang_view') }}">Keranjang <span
+                            class="badge badge-danger">0</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Tentang Kami</a>
@@ -231,20 +232,19 @@
             <h2>Menu</h2>
         </div>
     </div>
-
-    <div class="card-deck">
-        @foreach ($menuItems as $item)
+    @foreach ($menuItems as $item)
+        <div class="card-deck">
             <div class="card">
                 <img src="{{ Storage::url($item->image) }}" class="card-img-top" alt="{{ $item->nama }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ $item->nama }}</h5>
                     <p class="card-text">{{ $item->deskripsi }}</p>
                     <button class="btn btn-primary" data-toggle="modal" data-target="#productModal"
-                        onclick="showProductDetails('{{ $item->nama }}', '{{ Storage::url($item->image) }}', '{{ $item->deskripsi }}')">View</button>
+                        onclick="showProductDetails('{{ $item->nama }}', '{{ Storage::url($item->image) }}', '{{ $item->deskripsi }}', {{ $item->id }})">View</button>
                 </div>
             </div>
-        @endforeach
-    </div>
+        </div>
+    @endforeach
 
     <!-- Modal -->
     <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel"
@@ -276,13 +276,14 @@
                                         id="incrementBtn">+</button>
                                 </div>
                             </div>
-                            <button class="btn btn-primary">Tambahkan ke Keranjang</button>
+                            <button class="btn btn-primary" id="addToCartBtn">Tambahkan ke Keranjang</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <div style="margin-top: 50px"></div>
 
@@ -334,10 +335,13 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        function showProductDetails(name, image, description) {
+        let selectedMenuId = null;
+
+        function showProductDetails(name, image, description, menuId) {
             document.getElementById('productName').innerText = name;
             document.getElementById('productImage').src = image;
             document.getElementById('productDescription').innerText = description;
+            selectedMenuId = menuId;
         }
 
         document.getElementById('incrementBtn').addEventListener('click', function() {
@@ -351,6 +355,35 @@
                 document.getElementById('productQuantity').value = quantity - 1;
             }
         });
+
+        document.getElementById('addToCartBtn').addEventListener('click', function() {
+            let quantity = document.getElementById('productQuantity').value;
+
+            // Create a form and submit it
+            let form = document.createElement('form');
+            form.method = 'GET';
+            form.action = `/add-to-cart/${selectedMenuId}`;
+            document.body.appendChild(form);
+            form.submit();
+        });
+
+        function addToCart(id) {
+            let form = document.createElement('form');
+            form.method = 'GET';
+            form.action = `/add-to-cart/${id}`;
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
+
+    <script>
+        function addToCart(id) {
+            let form = document.createElement('form');
+            form.method = 'GET';
+            form.action = `/add-to-cart/${id}`;
+            document.body.appendChild(form);
+            form.submit();
+        }
     </script>
 
 </body>
