@@ -209,9 +209,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Tentang Kami</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">Admin Login</a>
                 </li>
@@ -283,6 +281,8 @@
             </div>
         </div>
     </div>
+
+
 
 
     <div style="margin-top: 50px"></div>
@@ -359,21 +359,10 @@
         document.getElementById('addToCartBtn').addEventListener('click', function() {
             let quantity = document.getElementById('productQuantity').value;
 
-            // Create a form and submit it
-            let form = document.createElement('form');
-            form.method = 'GET';
-            form.action = `/add-to-cart/${selectedMenuId}`;
-            document.body.appendChild(form);
-            form.submit();
+            // Construct the URL with the quantity as a query parameter
+            let url = `/add-to-cart/${selectedMenuId}?quantity=${quantity}`;
+            window.location.href = url;
         });
-
-        function addToCart(id) {
-            let form = document.createElement('form');
-            form.method = 'GET';
-            form.action = `/add-to-cart/${id}`;
-            document.body.appendChild(form);
-            form.submit();
-        }
     </script>
 
     <script>

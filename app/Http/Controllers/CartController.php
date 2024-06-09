@@ -9,17 +9,18 @@ use App\Models\Cart;
 class CartController extends Controller
 {   
 
-     public function addToCart(Request $request, $id)
+    public function addToCart(Request $request, $id)
     {
         $menu = Menu::find($id);
         $cart = session()->get('cart', []);
+        $quantity = $request->input('quantity', 1);
 
-        if(isset($cart[$id])) {
-            $cart[$id]['quantity']++;
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity'] += $quantity;
         } else {
             $cart[$id] = [
                 "name" => $menu->nama,
-                "quantity" => 1,
+                "quantity" => $quantity,
                 "price" => $menu->harga,
                 "image" => $menu->image
             ];
@@ -31,9 +32,9 @@ class CartController extends Controller
 
     public function updateCart(Request $request)
     {
-        if($request->id && $request->quantity){
+        if ($request->id && $request->quantity) {
             $cart = session()->get('cart');
-            if(isset($cart[$request->id])) {
+            if (isset($cart[$request->id])) {
                 $cart[$request->id]["quantity"] = $request->quantity;
                 session()->put('cart', $cart);
                 session()->flash('success', 'Cart updated successfully');
@@ -44,9 +45,9 @@ class CartController extends Controller
 
     public function removeCart(Request $request)
     {
-        if($request->id) {
+        if ($request->id) {
             $cart = session()->get('cart');
-            if(isset($cart[$request->id])) {
+            if (isset($cart[$request->id])) {
                 unset($cart[$request->id]);
                 session()->put('cart', $cart);
             }

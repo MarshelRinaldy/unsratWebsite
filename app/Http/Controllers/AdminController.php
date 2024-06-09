@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
+use App\Models\Admin;
 use App\Models\Kategori;
+use App\Models\Pelanggan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -55,6 +57,7 @@ class AdminController extends Controller
     }
     
     
+    //INI UNTUK KATEGORI
     public function kategori_admin(){
         $categories = Kategori::all();
 
@@ -75,5 +78,15 @@ class AdminController extends Controller
 
     
         return redirect()->route('kategori_admin')->with('success', 'Kategori berhasil ditambahkan!');
+    }
+
+
+
+    //INI UNTUK USERS
+    public function mengelola_users_admin(){
+        $admins = Admin::all();
+        $pelanggans = Pelanggan::all();
+
+        return view('admin.mengelolaAkunAdmin', compact('admins', 'pelanggans'));
     }
 }

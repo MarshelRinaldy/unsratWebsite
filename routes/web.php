@@ -36,7 +36,7 @@ Route::get('/admin-dashboard', function () {
 //ADMIN
 
 Route::get('/beranda_admin', [AdminController::class, 'beranda_admin'])->name('beranda_admin');
-
+Route::get('/mengelola_users_admin', [AdminController::class, 'mengelola_users_admin'])->name('mengelola_users_admin');
 Route::get('/menu_admin', [AdminController::class, 'menu_admin'])->name('menu_admin');
 Route::post('/store_menu', [AdminController::class, 'store_menu'])->name('store_menu');
 
@@ -49,5 +49,6 @@ Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('add
 // Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
 Route::patch('/update-cart', [CartController::class, 'updateCart'])->name('update.cart');
 Route::delete('/remove-from-cart', [CartController::class, 'removeCart'])->name('remove.from.cart');
+
 
 
