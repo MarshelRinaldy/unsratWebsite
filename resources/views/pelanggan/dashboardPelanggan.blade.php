@@ -209,10 +209,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Tentang Kami</a>
                 </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Admin Login</a>
-                </li>
             </ul>
         </div>
     </nav>

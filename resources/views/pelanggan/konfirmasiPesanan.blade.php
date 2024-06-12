@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Shopping Cart</title>
+    <title>Order Confirmation</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -19,23 +19,19 @@
             background-color: #343a40 !important;
         }
 
-        .cart-container {
-            display: flex;
-            justify-content: space-between;
+        .confirmation-container {
             margin-top: 20px;
-            flex-wrap: wrap;
         }
 
-        .cart-item {
+        .confirmation-item {
             display: flex;
             align-items: center;
             padding: 10px;
             border-bottom: 1px solid #e0e0e0;
             width: 100%;
-            max-width: 800px;
         }
 
-        .cart-item img {
+        .confirmation-item img {
             width: 80px;
             height: 80px;
             object-fit: cover;
@@ -43,42 +39,22 @@
             margin-right: 20px;
         }
 
-        .cart-item-details {
+        .confirmation-item-details {
             flex-grow: 1;
         }
 
-        .cart-item-title {
+        .confirmation-item-title {
             font-size: 18px;
             font-weight: bold;
         }
 
-        .cart-item-price {
+        .confirmation-item-price {
             font-size: 16px;
             color: #333;
             margin-top: 5px;
         }
 
-        .cart-item-quantity {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
-        }
-
-        .cart-item-quantity input {
-            width: 50px;
-            text-align: center;
-            margin: 0 10px;
-        }
-
-        .cart-item-quantity button {
-            background-color: #6c757d;
-            border: none;
-            color: white;
-            padding: 5px;
-            cursor: pointer;
-        }
-
-        .cart-summary {
+        .confirmation-summary {
             padding: 20px;
             border: 1px solid #e0e0e0;
             border-radius: 8px;
@@ -87,21 +63,22 @@
             max-width: 300px;
             margin-top: 20px;
             height: fit-content;
+            margin-left: auto;
         }
 
-        .cart-summary h5 {
+        .confirmation-summary h5 {
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 20px;
         }
 
-        .cart-summary .total {
+        .confirmation-summary .total {
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 20px;
         }
 
-        .cart-summary button {
+        .confirmation-summary button {
             width: 100%;
             background-color: #28a745;
             color: white;
@@ -142,50 +119,37 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div class="cart-container">
+    <div class="container confirmation-container">
+        <h2>Order Confirmation</h2>
+        <div class="confirmation-items">
             <!-- Loop through cart items -->
             @php $total = 0; @endphp
             @foreach (session('cart') as $id => $details)
                 @php $total += $details['price'] * $details['quantity']; @endphp
-                <div class="cart-item">
+                <div class="confirmation-item">
                     <img src="{{ Storage::url($details['image']) }}" alt="Item Image">
-                    <div class="cart-item-details">
-                        <div class="cart-item-title">{{ $details['name'] }}</div>
-                        <div class="cart-item-price">Rp {{ number_format($details['price'], 0, ',', '.') }}</div>
-                        <div class="cart-item-quantity">
-                            <form action="{{ route('update.cart') }}" method="POST">
-                                @csrf
-                                @method('PATCH')
-                                <button class="btn btn-secondary" type="submit" name="id"
-                                    value="{{ $id }}">-</button>
-                                <input type="number" name="quantity" value="{{ $details['quantity'] }}" min="1">
-                                <button class="btn btn-secondary" type="submit" name="id"
-                                    value="{{ $id }}">+</button>
-                            </form>
+                    <div class="confirmation-item-details">
+                        <div class="confirmation-item-title">{{ $details['name'] }}</div>
+                        <div class="confirmation-item-price">Rp {{ number_format($details['price'], 0, ',', '.') }}
                         </div>
+                        <div class="confirmation-item-quantity">Quantity: {{ $details['quantity'] }}</div>
                     </div>
-                    <div class="cart-item-total">
-                        <div class="cart-item-price">Rp
+                    <div class="confirmation-item-total">
+                        <div class="confirmation-item-price">Subtotal: Rp
                             {{ number_format($details['price'] * $details['quantity'], 0, ',', '.') }}</div>
-                        <form action="{{ route('remove.from.cart') }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger" type="submit" name="id"
-                                value="{{ $id }}">Remove</button>
-                        </form>
                     </div>
                 </div>
             @endforeach
+        </div>
 
-
-            <!-- Cart Summary -->
-            <div class="cart-summary">
-                <h5>Cart Summary</h5>
-                <div class="total">Total: Rp {{ number_format($total, 0, ',', '.') }}</div>
-                <a href="{{ route('orderConfirmation') }}" class="btn btn-success">Proceed to Checkout</a>
-            </div>
-
+        <!-- Confirmation Summary -->
+        <div class="confirmation-summary">
+            <h5>Order Summary</h5>
+            <div class="total">Total: Rp {{ number_format($total, 0, ',', '.') }}</div>
+            <form action="{{ route('confirmOrder') }}" method="POST">
+                @csrf
+                <button type="submit">Confirm Order</button>
+            </form>
         </div>
     </div>
 
