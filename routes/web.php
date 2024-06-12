@@ -23,6 +23,7 @@ Route::post('/simpan_pelanggan', [PelangganController::class, 'simpan_pelanggan'
 
 //LOGIN
 Route::get('/login_admin_view', [LoginController::class, 'login_admin_view'])->name('login_admin_view');
+Route::get('/login_pelanggan_view', [LoginController::class, 'login_pelanggan_view'])->name('login_pelanggan_view');
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login/admin', [LoginController::class, 'login_admin'])->name('login_admin');
@@ -86,6 +87,10 @@ Route::get('/order-confirmation', [PemesananController::class, 'orderConfirmatio
 Route::post('/confirm-order', [PemesananController::class, 'confirmOrder'])->name('confirmOrder');
 Route::get('/input_nama_meja/{order_id}', [PemesananController::class, 'input_nama_meja'])->name('input_nama_meja');
 Route::patch('/inputan_nama_dan_meja/{order_id}', [PemesananController::class,'inputan_nama_dan_meja'])->name('inputan_nama_dan_meja');
+
+//ABOUT US
+Route::get('/about-us', [SettingController::class, 'aboutUs'])->name('about_us');
+
 
 //LOGOUT
 Route::get('/logout_admin', function () {

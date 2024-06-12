@@ -34,16 +34,16 @@
 
         .main-content h1,
         .main-content h2 {
-            color: white;
+            color: #ffffff;
             font-family: 'Brush Script MT', cursive;
         }
 
         .main-content h1 {
-            font-size: 3rem;
+            font-size: 6rem;
         }
 
         .main-content h2 {
-            font-size: 2rem;
+            font-size: 3rem;
         }
 
         .main-content .btn-dark {
@@ -169,57 +169,6 @@
             background-color: #ffffff;
         }
 
-        /*responsive*/
-        @media (max-width: 767px) {
-            .footer-col {
-                width: 50%;
-                margin-bottom: 30px;
-            }
-        }
-
-        @media (max-width: 574px) {
-            .footer-col {
-                width: 100%;
-            }
-        }
-
-        /* .kategori {
-            margin-bottom: 30px;
-        }
-
-        .card {
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .card img {
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .card-body {
-            padding: 20px;
-        }
-
-        .card-title {
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .card-text {
-            font-size: 16px;
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        } */
-
         .kategori-wrapper {
             display: flex;
             flex-direction: column;
@@ -228,14 +177,12 @@
         .kategori {
             margin-bottom: 20px;
         }
-
-
     </style>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand" href="#">Rumah Makan Dapoer Boulevard</a>
+        <a class="navbar-brand" href="#">{{ $settings->system_name }}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -253,7 +200,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="kategoriDropdown">
                                 @foreach($categories as $category)
-                                    <a class="dropdown-item" href="#">{{ $category->nama }}</a>
+                                    <a class="dropdown-item" href="#" data-category-id="{{ $category->id }}">{{ $category->nama }}</a>
                                 @endforeach
                             </div>
                         </li>
@@ -261,10 +208,10 @@
                 </div>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('keranjang_view') }}">Keranjang <span
-                            class="badge badge-danger">0</span></a>
+                    class="badge badge-danger">{{ count(session('cart', [])) }}</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Tentang Kami</a>
+                    <a class="nav-link" href="{{ route('about_us') }}">Tentang Kami</a>
                 </li>
             </ul>
         </div>
@@ -274,53 +221,40 @@
         <div>
             <h1>Selamat Datang di</h1>
             <h2>Rumah Makan Dapoer Boulevard</h2>
-            <button class="btn btn-dark mt-3">ORDER</button>
+            <button class="btn btn-dark mt-3" id="orderButton">ORDER</button>
         </div>
     </div>
 
-    <div class="menu text-center">
-    <div>
-        <h2>Menu</h2>
-    </div>
-    <div class="container">
-    <div class="kategori-wrapper">
-        @foreach($categories as $category)
-        <div class="kategori">
-            <h3>{{ $category->nama }}</h3>
-            <div class="row">
-                @foreach($menuItems as $item)
-                @if($item->kategori_id == $category->id)
-                <div class="col-md-4">
+    <div class="menu text-center" id="menu">
+        <div>
+            <h2>Menu</h2>
+        </div>
+        <div class="kategori-wrapper">
+            @foreach($categories as $category)
+            <div class="kategori" data-category-id="{{ $category->id }}">
+                <h3>{{ $category->nama }}</h3>
+                <div class="card-deck">
+                    @foreach($category->menu as $menu)
                     <div class="card">
-                        <img src="{{ Storage::url($item->image) }}" class="card-img-top" alt="{{ $item->nama }}">
+                        <img src="{{ asset('images/'.$menu->gambar) }}" class="card-img-top" alt="{{ $menu->nama }}">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $item->nama }}</h5>
-                            <p class="card-text">{{ $item->deskripsi }}</p>
+                            <h5 class="card-title">{{ $menu->nama }}</h5>
+                            <p class="card-text">Rp. {{ number_format($menu->harga, 0, ',', '.') }}</p>
                             <button class="btn btn-primary" data-toggle="modal" data-target="#productModal"
-                                onclick="showProductDetails('{{ $item->nama }}', '{{ Storage::url($item->image) }}', '{{ $item->deskripsi }}', {{ $item->id }})">View</button>
+                                onclick="showProductDetails('{{ $menu->nama }}', '{{ asset('images/'.$menu->gambar) }}', '{{ $menu->deskripsi }}', '{{ $menu->id }}')">Detail</button>
                         </div>
                     </div>
+                    @endforeach
                 </div>
-                @endif
-                @endforeach
             </div>
+            @endforeach
         </div>
-        @endforeach
     </div>
-</div>
-
-</div>
-
-
-
-
-
-
 
     <!-- Modal -->
     <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="productModalLabel">Detail Produk</h5>
@@ -329,32 +263,25 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <img id="productImage" src="" class="img-fluid" alt="Product Image">
-                        </div>
-                        <div class="col-md-6">
-                            <h4 id="productName">Nama Makanan</h4>
-                            <p id="productDescription">Deskripsi singkat mengenai makanan ini.</p>
-                            <div class="input-group mb3">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-outline-secondary" type="button"
-                                        id="decrementBtn">-</button>
-                                </div>
-                                <input type="text" class="form-control" id="productQuantity" value="1" readonly>
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button"
-                                        id="incrementBtn">+</button>
-                                </div>
+                    <div class="text-center">
+                        <img id="productImage" src="" alt="Product Image" class="img-fluid mb-3" />
+                        <h4 id="productName"></h4>
+                        <p id="productDescription">Deskripsi singkat mengenai makanan ini.</p>
+                        <div class="input-group mb3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" type="button" id="decrementBtn">-</button>
                             </div>
-                            <button class="btn btn-primary" id="addToCartBtn">Tambahkan ke Keranjang</button>
+                            <input type="text" class="form-control" id="productQuantity" value="1" readonly>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="incrementBtn">+</button>
+                            </div>
                         </div>
+                        <button class="btn btn-primary" id="addToCartBtn">Tambahkan ke Keranjang</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 
     <div style="margin-top: 50px"></div>
 
@@ -406,6 +333,10 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
+        document.getElementById('orderButton').addEventListener('click', function() {
+            document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+        });
+
         let selectedMenuId = null;
 
         function showProductDetails(name, image, description, menuId) {
@@ -429,23 +360,23 @@
 
         document.getElementById('addToCartBtn').addEventListener('click', function() {
             let quantity = document.getElementById('productQuantity').value;
-
-            // Construct the URL with the quantity as a query parameter
             let url = `/add-to-cart/${selectedMenuId}?quantity=${quantity}`;
             window.location.href = url;
         });
-    </script>
 
-    <script>
-        function addToCart(id) {
-            let form = document.createElement('form');
-            form.method = 'GET';
-            form.action = `/add-to-cart/${id}`;
-            document.body.appendChild(form);
-            form.submit();
-        }
+        document.querySelectorAll('.dropdown-item').forEach(item => {
+            item.addEventListener('click', function() {
+                let categoryId = this.getAttribute('data-category-id');
+                document.querySelectorAll('.kategori').forEach(kategori => {
+                    if (kategori.getAttribute('data-category-id') == categoryId) {
+                        kategori.style.display = 'block';
+                    } else {
+                        kategori.style.display = 'none';
+                    }
+                });
+            });
+        });
     </script>
-
 </body>
 
 </html>

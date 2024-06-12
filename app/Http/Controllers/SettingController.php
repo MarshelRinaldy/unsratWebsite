@@ -39,4 +39,10 @@ class SettingController extends Controller
 
         return redirect()->route('admin.setting')->with('success', 'Settings updated successfully');
     }
+
+    public function aboutUs()
+    {
+        $settings = Setting::first();
+        return view('pelanggan.about_us', compact('settings'));
+    }
 }

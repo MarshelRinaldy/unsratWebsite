@@ -33,6 +33,10 @@ class LoginController extends Controller
     }
 
 
+    public function login_pelanggan_view(){
+        return view('pelanggan.loginPelanggan');
+    }
+
      public function login_admin_view(){
         return view('admin.loginAdmin');
     }

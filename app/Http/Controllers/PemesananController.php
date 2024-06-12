@@ -6,6 +6,7 @@ use App\Models\Pesanan;
 use App\Models\ListPesanan;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use App\Models\Setting;
 
 class PemesananController extends Controller
 {
@@ -16,7 +17,14 @@ class PemesananController extends Controller
             return $sum + ($item['price'] * $item['quantity']);
         }, 0);
 
-        return view('pelanggan.konfirmasiPesanan', compact('cart', 'total'));
+        $settings = Setting::first();
+        if (!$settings) {
+            // Handle the case where no settings are found, possibly return an empty view or create default settings.
+            return view('admin.setting')->with('settings', new Setting());
+        }
+        
+
+        return view('pelanggan.konfirmasiPesanan', compact('cart', 'total', 'settings'));
     }
 
     public function confirmOrder(Request $request)
@@ -49,7 +57,12 @@ class PemesananController extends Controller
 
 
     public function input_nama_meja($order_id){
-        return view('pelanggan.inputNamaDanMeja', compact('order_id'));
+        $settings = Setting::first();
+        if (!$settings) {
+            // Handle the case where no settings are found, possibly return an empty view or create default settings.
+            return view('admin.setting')->with('settings', new Setting());
+        }
+        return view('pelanggan.inputNamaDanMeja', compact('order_id', 'settings'));
     }
 
     public function inputan_nama_dan_meja(Request $request, $order_id) {

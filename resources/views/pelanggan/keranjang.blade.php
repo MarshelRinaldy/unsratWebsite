@@ -12,7 +12,6 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f7f7f7;
-            margin-top: 20px;
         }
 
         .navbar {
@@ -110,12 +109,18 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
+        .alert-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand" href="#">Rumah Makan Dapoer Boulevard</a>
+        <a class="navbar-brand" href="#">{{ $settings->system_name }}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -133,7 +138,7 @@
                             class="badge badge-danger">{{ count(session('cart', [])) }}</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Tentang Kami</a>
+                     <a class="nav-link" href="{{ route('about_us') }}">Tentang Kami</a>
                 </li>
 
             </ul>
@@ -185,9 +190,11 @@
                     <a href="{{ route('orderConfirmation') }}" class="btn btn-success">Proceed to Checkout</a>
                 </div>
             @else
+            <div class="container alert-container">
                 <div class="alert alert-warning" role="alert">
                     Your cart is empty.
                 </div>
+            </div>
             @endif
         </div>
     </div>

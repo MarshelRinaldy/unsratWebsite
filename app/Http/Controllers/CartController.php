@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 use App\Models\Cart;
-
+use App\Models\Setting;
 class CartController extends Controller
 {   
 
@@ -58,7 +58,12 @@ class CartController extends Controller
 
     public function keranjang_view()
     {
-        return view('pelanggan.keranjang');
+        $settings = Setting::first();
+        if (!$settings) {
+            
+            return view('admin.setting')->with('settings', new Setting());
+        }
+        return view('pelanggan.keranjang', compact('settings'));
     }
 
     

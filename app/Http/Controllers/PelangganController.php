@@ -6,6 +6,7 @@ use App\Models\Menu;
 use App\Models\Pelanggan;
 use Illuminate\Http\Request;
 use App\Models\Kategori;
+use App\Models\Setting;
 
 class PelangganController extends Controller
 {
@@ -34,7 +35,7 @@ class PelangganController extends Controller
             'alamat' => $request->alamat,
         ]);
 
-        return redirect()->route('pelanggan.loginPelanggan')->with('success', 'Pelanggan berhasil terdaftar!');
+        return redirect()->route('login_pelanggan_view')->with('success', 'Pelanggan berhasil terdaftar!');
     }
 
     
@@ -43,7 +44,12 @@ class PelangganController extends Controller
 
         $menuItems = Menu::all(); 
         $categories = Kategori::all();
-        return view('pelanggan.dashboardPelanggan', compact('menuItems', 'categories'),);
+        $settings = Setting::first();
+        if (!$settings) {
+            
+            return view('admin.setting')->with('settings', new Setting());
+        }
+        return view('pelanggan.dashboardPelanggan', compact('menuItems', 'categories', 'settings'),);
     }
 
     

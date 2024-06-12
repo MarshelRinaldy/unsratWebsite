@@ -12,7 +12,6 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f7f7f7;
-            margin-top: 20px;
         }
 
         .navbar {
@@ -68,7 +67,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand" href="#">Rumah Makan Dapoer Boulevard</a>
+        <a class="navbar-brand" href="#">{{ $settings->system_name }}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -86,7 +85,7 @@
                             class="badge badge-danger">{{ count(session('cart', [])) }}</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Tentang Kami</a>
+                    <a class="nav-link" href="{{ route('about_us') }}">Tentang Kami</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Login</a>
