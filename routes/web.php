@@ -23,6 +23,8 @@ Route::get('/login_admin_view', [LoginController::class, 'login_admin_view'])->n
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login/admin', [LoginController::class, 'login_admin'])->name('login_admin');
+Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+
 
 
 //DASHBOARD

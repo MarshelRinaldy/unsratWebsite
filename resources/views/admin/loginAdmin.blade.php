@@ -12,18 +12,17 @@
             font-family: Arial, sans-serif;
         }
 
-        .bg-grey {
-            background-color: #b0b0b0;
+        .bg-orange {
+            background-color: #ff7a00;
         }
 
-        .bg-black {
-            background-color: #000000;
+        .bg-white {
+            background-color: #ffffff;
         }
 
         .text-white {
             color: #ffffff;
             text-align: center;
-            font-size: 2rem;
         }
 
         .card {
@@ -62,6 +61,11 @@
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
+
+        .card{
+            border: 2px solid white;
+            border-radius: 20px;
+        }
     </style>
 </head>
 
@@ -75,21 +79,21 @@
 
     <div class="container-fluid vh-100 d-flex">
         <div class="row flex-fill">
-            <div class="col-md-5 d-flex align-items-center justify-content-center bg-grey">
+            <div class="col-md-5 d-flex align-items-center justify-content-center bg-orange">
                 <h1 class="text-white">Dapoer Boulevard -<br> Admin Site</h1>
             </div>
-            <div class="col-md-7 d-flex align-items-center justify-content-center bg-black">
-                <div class="card p-2">
+            <div class="col-md-7 d-flex align-items-center justify-content-center bg-white">
+                <div class="card p-2 bg-orange">
                     <div class="card-body">
                         <form method="POST" action="{{ route('login_admin') }}">
                             @csrf
                             <div class="form-group">
-                                <label for="username">Username</label>
+                                <label for="username" class="text-white">Username</label>
                                 <input type="text" class="form-control" id="username" name="username"
                                     placeholder="Enter username" required>
                             </div>
                             <div class="form-group">
-                                <label for="password">Password</label>
+                                <label for="password" class="text-white">Password</label>
                                 <input type="password" class="form-control" id="password" name="password"
                                     placeholder="Password" required>
                             </div>
