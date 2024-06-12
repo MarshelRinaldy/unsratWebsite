@@ -60,4 +60,6 @@ class CartController extends Controller
     {
         return view('pelanggan.keranjang');
     }
+
+    
 }

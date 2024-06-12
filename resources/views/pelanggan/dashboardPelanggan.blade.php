@@ -184,6 +184,54 @@
                 width: 100%;
             }
         }
+
+        /* .kategori {
+            margin-bottom: 30px;
+        }
+
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .card-text {
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        } */
+
+        .kategori-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .kategori {
+            margin-bottom: 20px;
+        }
+
+
     </style>
 </head>
 
@@ -199,9 +247,20 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Beranda</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Kategori</a>
-                </li>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="kategoriDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Kategori
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="kategoriDropdown">
+                                @foreach($categories as $category)
+                                    <a class="dropdown-item" href="#">{{ $category->nama }}</a>
+                                @endforeach
+                            </div>
+                        </li>
+                    </ul>
+                </div>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('keranjang_view') }}">Keranjang <span
                             class="badge badge-danger">0</span></a>
@@ -226,23 +285,43 @@
     </div>
 
     <div class="menu text-center">
-        <div>
-            <h2>Menu</h2>
-        </div>
+    <div>
+        <h2>Menu</h2>
     </div>
-    @foreach ($menuItems as $item)
-        <div class="card-deck">
-            <div class="card">
-                <img src="{{ Storage::url($item->image) }}" class="card-img-top" alt="{{ $item->nama }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $item->nama }}</h5>
-                    <p class="card-text">{{ $item->deskripsi }}</p>
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#productModal"
-                        onclick="showProductDetails('{{ $item->nama }}', '{{ Storage::url($item->image) }}', '{{ $item->deskripsi }}', {{ $item->id }})">View</button>
+    <div class="container">
+    <div class="kategori-wrapper">
+        @foreach($categories as $category)
+        <div class="kategori">
+            <h3>{{ $category->nama }}</h3>
+            <div class="row">
+                @foreach($menuItems as $item)
+                @if($item->kategori_id == $category->id)
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ Storage::url($item->image) }}" class="card-img-top" alt="{{ $item->nama }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $item->nama }}</h5>
+                            <p class="card-text">{{ $item->deskripsi }}</p>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#productModal"
+                                onclick="showProductDetails('{{ $item->nama }}', '{{ Storage::url($item->image) }}', '{{ $item->deskripsi }}', {{ $item->id }})">View</button>
+                        </div>
+                    </div>
                 </div>
+                @endif
+                @endforeach
             </div>
         </div>
-    @endforeach
+        @endforeach
+    </div>
+</div>
+
+</div>
+
+
+
+
+
+
 
     <!-- Modal -->
     <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel"
@@ -281,8 +360,6 @@
             </div>
         </div>
     </div>
-
-
 
 
     <div style="margin-top: 50px"></div>
