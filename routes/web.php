@@ -7,6 +7,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PemesananController;
 
 Route::get('/', function () {
     return view('pelanggan.loginPelanggan');
@@ -34,14 +35,13 @@ Route::get('/admin-dashboard', function () {
 })->name('dashboard_admin');
 
 
-
-
 //ADMIN
-
 Route::get('/beranda_admin', [AdminController::class, 'beranda_admin'])->name('beranda_admin');
 Route::get('/mengelola_users_admin', [AdminController::class, 'mengelola_users_admin'])->name('mengelola_users_admin');
 Route::get('/menu_admin', [AdminController::class, 'menu_admin'])->name('menu_admin');
 Route::post('/store_menu', [AdminController::class, 'store_menu'])->name('store_menu');
+
+Route::get('/show_daftar_pesanan', [AdminController::class, 'show_daftar_pesanan'])->name('show_daftar_pesanan');
 
 Route::get('/kategori_admin', [AdminController::class, 'kategori_admin'])->name('kategori_admin');
 Route::post('/store_kategori', [AdminController::class, 'store_kategori'])->name('store_kategori');
@@ -54,9 +54,13 @@ Route::patch('/update-cart', [CartController::class, 'updateCart'])->name('updat
 Route::delete('/remove-from-cart', [CartController::class, 'removeCart'])->name('remove.from.cart');
 
 
+//PEMESANAN
+Route::get('/order-confirmation', [PemesananController::class, 'orderConfirmation'])->name('orderConfirmation');
+Route::post('/confirm-order', [PemesananController::class, 'confirmOrder'])->name('confirmOrder');
+Route::get('/input_nama_meja/{order_id}', [PemesananController::class, 'input_nama_meja'])->name('input_nama_meja');
+Route::patch('/inputan_nama_dan_meja/{order_id}', [PemesananController::class,'inputan_nama_dan_meja'])->name('inputan_nama_dan_meja');
 
 //LOGOUT
-
 Route::get('/logout_admin', function () {
     Auth::logout();
     return redirect()->route('login_admin');

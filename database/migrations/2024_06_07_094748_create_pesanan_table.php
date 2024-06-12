@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('pelanggan_id');
             $table->foreign('pelanggan_id')->references('id')->on('pelanggan')->onDelete('cascade');
-            $table->integer('meja');
+            $table->string('nama')->nullable();
+            $table->integer('meja')->nullable();
+            $table->integer('total_harga');
             $table->string('status_pesanan');
             $table->timestamps();
         });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use App\Models\Admin;
+use App\Models\Pesanan;
 use App\Models\Kategori;
 use App\Models\Pelanggan;
 use Illuminate\Http\Request;
@@ -89,4 +90,18 @@ class AdminController extends Controller
 
         return view('admin.mengelolaAkunAdmin', compact('admins', 'pelanggans'));
     }
+
+    //INI UNTUK DAFTAR PESANAN
+   public function show_daftar_pesanan(Request $request)
+{
+    $status = $request->input('status', 'Diproses'); 
+    $pesanan = Pesanan::where('status_pesanan', $status)->get();
+
+    return view('admin.daftarPesanan', [
+        'pesanan' => $pesanan,
+        'status' => $status
+    ]);
+}
+
+
 }
