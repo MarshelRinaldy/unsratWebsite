@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use App\Models\Pelanggan;
 use Illuminate\Http\Request;
+use App\Models\Kategori;
 
 class PelangganController extends Controller
 {
@@ -39,7 +40,8 @@ class PelangganController extends Controller
     public function dashboard_pelanggan(){
 
         $menuItems = Menu::all(); 
-        return view('pelanggan.dashboardPelanggan', compact('menuItems'));
+        $categories = Kategori::all();
+        return view('pelanggan.dashboardPelanggan', compact('menuItems', 'categories'),);
     }
 
     
