@@ -34,8 +34,10 @@ class PelangganController extends Controller
             'alamat' => $request->alamat,
         ]);
 
-        return redirect()->route('pelanggan.dashboard')->with('success', 'Pelanggan berhasil terdaftar!');
+        return redirect()->route('pelanggan.loginPelanggan')->with('success', 'Pelanggan berhasil terdaftar!');
     }
+
+    
 
     public function dashboard_pelanggan(){
 

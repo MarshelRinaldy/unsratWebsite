@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pesanan;
 use App\Models\ListPesanan;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class PemesananController extends Controller
 {
@@ -67,6 +68,29 @@ class PemesananController extends Controller
     
     return redirect()->route('dashboard_pelanggan')->with('success', 'Berhasil Memesan, Silahkan menunggu pesanan anda');
 }
+
+    public function showOrder($orderId)
+    {
+        $order = Pesanan::with('listPesanan.menu')->findOrFail($orderId);
+        return response()->json($order);
+    }
+
+    public function confirmOrders($orderId)
+    {
+        $order = Pesanan::findOrFail($orderId);
+        $order->status_pesanan = 'Confirmed';
+        $order->save();
+
+        return response()->json(['success' => true, 'message' => 'Order confirmed successfully.']);
+    }
+
+    public function generatePdf($orderId)
+    {
+        $order = Pesanan::with('listPesanan.menu')->findOrFail($orderId);
+        $pdf = PDF::loadView('pdf.invoice', compact('order'));
+        return $pdf->download('invoice.pdf');
+    }
+
 
 
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PemesananController;
 
+
 Route::get('/', function () {
     return view('pelanggan.loginPelanggan');
 });
@@ -24,7 +25,7 @@ Route::get('/login_admin_view', [LoginController::class, 'login_admin_view'])->n
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login/admin', [LoginController::class, 'login_admin'])->name('login_admin');
-Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 
 
@@ -45,6 +46,31 @@ Route::get('/show_daftar_pesanan', [AdminController::class, 'show_daftar_pesanan
 
 Route::get('/kategori_admin', [AdminController::class, 'kategori_admin'])->name('kategori_admin');
 Route::post('/store_kategori', [AdminController::class, 'store_kategori'])->name('store_kategori');
+
+Route::get('/orders/{orderId}', [PemesananController::class, 'showOrder'])->name('orders.show');
+Route::post('/orders/{orderId}/confirm', [PemesananController::class, 'confirmOrders'])->name('orders.confirm');
+Route::get('/orders/{orderId}/pdf', [PemesananController::class, 'generatePdf'])->name('orders.pdf');
+
+Route::put('/kategori/update/{id}', [AdminController::class, 'update_kategori'])->name('update_kategori');
+Route::delete('/kategori/delete/{id}', [AdminController::class, 'delete_kategori'])->name('delete_kategori');
+
+Route::put('/menu/{id}', [AdminController::class, 'update_menu'])->name('update_menu');
+Route::delete('/menu/{id}', [AdminController::class, 'delete_menu'])->name('delete_menu');
+
+Route::put('/admin/pelanggan/{id}', [AdminController::class, 'updatePelanggan'])->name('update_pelanggan');
+Route::delete('/admin/pelanggan/{id}', [AdminController::class, 'deletePelanggan'])->name('delete_pelanggan');
+
+Route::put('/admin/admin/{id}', [AdminController::class, 'updateAdmin'])->name('update_admin');
+Route::delete('/admin/admin/{id}', [AdminController::class, 'deleteAdmin'])->name('delete_admin');
+
+Route::get('/admin/mengelola-akun', [AdminController::class, 'mengelola_users_admin'])->name('admin.mengelolaAkunAdmin');
+
+Route::get('/admin/settings', [SettingController::class, 'index'])->name('admin.settings');
+Route::post('/admin/settings', [SettingController::class, 'update'])->name('admin.settings.update');
+
+
+
+
 
 //CART
 Route::get('/keranjang_view', [CartController::class, 'keranjang_view'])->name('keranjang_view');

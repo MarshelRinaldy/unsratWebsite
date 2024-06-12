@@ -53,8 +53,12 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $category->nama }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-sm btn-primary me-1">Edit</a>
-                                        <a href="#" class="btn btn-sm btn-danger">Hapus</a>
+                                        <button class="btn btn-sm btn-primary me-1" data-bs-toggle="modal" data-bs-target="#editModal{{$category->id}}">Edit</button>
+                                        <form action="{{ route('delete_kategori', ['id' => $category->id]) }}" method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this kategori?')">Hapus</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -70,6 +74,37 @@
         </div>
     </div>
 @endsection
+
+
+
+@foreach ($categories as $category)
+    <!-- Modal for editing category -->
+    <div class="modal fade" id="editModal{{$category->id}}" tabindex="-1" aria-labelledby="editModal{{$category->id}}Label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModal{{$category->id}}Label">Edit Kategori</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('update_kategori', ['id' => $category->id]) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="kategori" class="form-label">Kategori</label>
+                            <input type="text" class="form-control" id="kategori" name="kategori" value="{{$category->nama}}">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endforeach
+
 
 <!-- Additional custom styles can be included in a separate CSS file or in a <style> block -->
 <style>

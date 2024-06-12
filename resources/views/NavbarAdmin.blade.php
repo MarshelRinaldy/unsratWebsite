@@ -227,6 +227,13 @@
                         <span>Users</span>
                     </a>
                 </li>
+
+                <li class="sidebar-item">
+                    <a href="{{ route('mengelola_users_admin') }}" class="sidebar-link">
+                        <i class="lni lni-agenda"></i>
+                        <span>Setting Site</span>
+                    </a>
+                </li>
             </ul>
 
             <div class="sidebar-footer">
@@ -238,6 +245,7 @@
                     <span>Logout</span>
                 </a>
             </div>
+
 
 
 
