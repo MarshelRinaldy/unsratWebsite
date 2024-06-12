@@ -10,7 +10,12 @@ class SettingController extends Controller
     public function index()
     {
         $settings = Setting::first();
-        return view('admin.settings', compact('settings'));
+        if (!$settings) {
+            // Handle the case where no settings are found, possibly return an empty view or create default settings.
+            return view('admin.setting')->with('settings', new Setting());
+        }
+
+        return view('admin.setting', compact('settings'));
     }
 
     public function update(Request $request)
@@ -22,13 +27,16 @@ class SettingController extends Controller
             'about_us' => 'required|string',
         ]);
 
-        $settings = Setting::first();
+        // Retrieve the settings or create new settings if none exist
+        $settings = Setting::firstOrNew();
+        
+        // Update the settings
         $settings->system_name = $request->input('system_name');
         $settings->email = $request->input('email');
         $settings->contact = $request->input('contact');
         $settings->about_us = $request->input('about_us');
         $settings->save();
 
-        return redirect()->route('admin.settings')->with('success', 'Settings updated successfully');
+        return redirect()->route('admin.setting')->with('success', 'Settings updated successfully');
     }
 }

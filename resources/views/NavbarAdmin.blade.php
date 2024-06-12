@@ -229,7 +229,7 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="{{ route('mengelola_users_admin') }}" class="sidebar-link">
+                    <a href="{{ route('admin.setting') }}" class="sidebar-link">
                         <i class="lni lni-agenda"></i>
                         <span>Setting Site</span>
                     </a>

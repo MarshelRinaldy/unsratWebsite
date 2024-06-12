@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PemesananController;
+use App\Http\Controllers\SettingController;
 
 
 Route::get('/', function () {
@@ -65,7 +66,7 @@ Route::delete('/admin/admin/{id}', [AdminController::class, 'deleteAdmin'])->nam
 
 Route::get('/admin/mengelola-akun', [AdminController::class, 'mengelola_users_admin'])->name('admin.mengelolaAkunAdmin');
 
-Route::get('/admin/settings', [SettingController::class, 'index'])->name('admin.settings');
+Route::get('/admin/settings', [SettingController::class, 'index'])->name('admin.setting');
 Route::post('/admin/settings', [SettingController::class, 'update'])->name('admin.settings.update');
 
 

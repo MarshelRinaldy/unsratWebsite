@@ -3,25 +3,24 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Eloquent\Model;
 
-return new class extends Migration
+class CreateSettingsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
+            $table->string('system_name');
+            $table->string('email');
+            $table->string('contact');
+            $table->text('about_us');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('settings');
     }
-};
+}
