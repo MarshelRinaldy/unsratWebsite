@@ -39,6 +39,8 @@ Route::get('/mengelola_users_admin', [AdminController::class, 'mengelola_users_a
 Route::get('/menu_admin', [AdminController::class, 'menu_admin'])->name('menu_admin');
 Route::post('/store_menu', [AdminController::class, 'store_menu'])->name('store_menu');
 
+Route::get('/show_daftar_pesanan', [AdminController::class, 'show_daftar_pesanan'])->name('show_daftar_pesanan');
+
 Route::get('/kategori_admin', [AdminController::class, 'kategori_admin'])->name('kategori_admin');
 Route::post('/store_kategori', [AdminController::class, 'store_kategori'])->name('store_kategori');
 
@@ -53,6 +55,8 @@ Route::delete('/remove-from-cart', [CartController::class, 'removeCart'])->name(
 //PEMESANAN
 Route::get('/order-confirmation', [PemesananController::class, 'orderConfirmation'])->name('orderConfirmation');
 Route::post('/confirm-order', [PemesananController::class, 'confirmOrder'])->name('confirmOrder');
+Route::get('/input_nama_meja/{order_id}', [PemesananController::class, 'input_nama_meja'])->name('input_nama_meja');
+Route::patch('/inputan_nama_dan_meja/{order_id}', [PemesananController::class,'inputan_nama_dan_meja'])->name('inputan_nama_dan_meja');
 
 //LOGOUT
 Route::get('/logout_admin', function () {

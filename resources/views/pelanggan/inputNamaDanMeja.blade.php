@@ -21,37 +21,10 @@
 
         .confirmation-container {
             margin-top: 20px;
-        }
-
-        .confirmation-item {
             display: flex;
+            justify-content: center;
             align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #e0e0e0;
-            width: 100%;
-        }
-
-        .confirmation-item img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-right: 20px;
-        }
-
-        .confirmation-item-details {
-            flex-grow: 1;
-        }
-
-        .confirmation-item-title {
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .confirmation-item-price {
-            font-size: 16px;
-            color: #333;
-            margin-top: 5px;
+            flex-direction: column;
         }
 
         .confirmation-summary {
@@ -60,19 +33,13 @@
             border-radius: 8px;
             background-color: #ffffff;
             width: 100%;
-            max-width: 300px;
+            max-width: 400px;
             margin-top: 20px;
             height: fit-content;
-            margin-left: auto;
+            text-align: center;
         }
 
         .confirmation-summary h5 {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .confirmation-summary .total {
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 20px;
@@ -86,6 +53,15 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-control {
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -121,34 +97,24 @@
 
     <div class="container confirmation-container">
         <h2>Order Confirmation</h2>
-        <div class="confirmation-items">
-            <!-- Loop through cart items -->
-            @php $total = 0; @endphp
-            @foreach ($cart as $id => $details)
-                @php $total += $details['price'] * $details['quantity']; @endphp
-                <div class="confirmation-item">
-                    <img src="{{ Storage::url($details['image']) }}" alt="Item Image">
-                    <div class="confirmation-item-details">
-                        <div class="confirmation-item-title">{{ $details['name'] }}</div>
-                        <div class="confirmation-item-price">Rp {{ number_format($details['price'], 0, ',', '.') }}
-                        </div>
-                        <div class="confirmation-item-quantity">Quantity: {{ $details['quantity'] }}</div>
-                    </div>
-                    <div class="confirmation-item-total">
-                        <div class="confirmation-item-price">Subtotal: Rp
-                            {{ number_format($details['price'] * $details['quantity'], 0, ',', '.') }}</div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
 
-        <!-- Confirmation Summary -->
+        <!-- Confirmation Form -->
         <div class="confirmation-summary">
-            <h5>Order Summary</h5>
-            <div class="total">Total: Rp {{ number_format($total, 0, ',', '.') }}</div>
-            <form action="{{ route('confirmOrder') }}" method="POST">
+            <h5>Confirm Your Order</h5>
+            <form action="{{ route('inputan_nama_dan_meja', $order_id) }}" method="POST">
+                @method('patch')
                 @csrf
-                <button type="submit">Confirm Order</button>
+                <div class="form-group">
+                    <label for="name">Nama</label>
+                    <input type="text" class="form-control" id="name" name="nama"
+                        placeholder="Masukkan Nama Anda" required>
+                </div>
+                <div class="form-group">
+                    <label for="meja">No Meja</label>
+                    <input type="number" class="form-control" id="meja" name="meja"
+                        placeholder="Masukkan Nomor Meja" required>
+                </div>
+                <button type="submit">Proses Checkout</button>
             </form>
         </div>
     </div>

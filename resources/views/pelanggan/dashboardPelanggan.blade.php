@@ -22,11 +22,9 @@
 
         .main-content {
             background-image: url('../images/bg1.jpg');
-            /* Replace with your image URL */
             background-size: cover;
             background-position: center;
             height: 650px;
-            /* Full height minus navbar height */
             display: flex;
             justify-content: center;
             align-items: center;

@@ -15,7 +15,7 @@ class PemesananController extends Controller
             return $sum + ($item['price'] * $item['quantity']);
         }, 0);
 
-        return view('pelanggan.dashboardPelanggan', compact('cart', 'total'));
+        return view('pelanggan.konfirmasiPesanan', compact('cart', 'total'));
     }
 
     public function confirmOrder(Request $request)
@@ -28,11 +28,10 @@ class PemesananController extends Controller
 
         $order = Pesanan::create([
             'pelanggan_id' => $userId,
-            'meja' => $request->meja,
-            'status_pesanan' => 'pending',
+            'total_harga' => $total,
+            'status_pesanan' => 'Diproses',
         ]);
 
-      
         foreach ($cart as $id => $details) {
             ListPesanan::create([
                 'pesanan_id' => $order->id,
@@ -40,8 +39,34 @@ class PemesananController extends Controller
                 'quantity' => $details['quantity'],
             ]);
         }
-        
+
         session()->forget('cart');
-        return redirect()->route('dashboard_pelanggan')->with('success', 'Order confirmed!');
+
+        return redirect()->route('input_nama_meja', ['order_id' => $order->id])
+                         ->with('success', 'Order confirmed!');
     }
+
+
+    public function input_nama_meja($order_id){
+        return view('pelanggan.inputNamaDanMeja', compact('order_id'));
+    }
+
+    public function inputan_nama_dan_meja(Request $request, $order_id) {
+    
+    $pesanan = Pesanan::findOrFail($order_id);
+    
+    $request->validate([
+        'nama' => 'required|string|max:255',
+        'meja' => 'required|integer',
+    ]);
+    
+    $pesanan->update([
+        'nama' => $request->nama,
+        'meja' => $request->meja,
+    ]);
+    
+    return redirect()->route('dashboard_pelanggan')->with('success', 'Berhasil Memesan, Silahkan menunggu pesanan anda');
+}
+
+
 }

@@ -36,12 +36,14 @@ class PelangganController extends Controller
         return redirect()->route('pelanggan.dashboard')->with('success', 'Pelanggan berhasil terdaftar!');
     }
 
-
     public function dashboard_pelanggan(){
 
         $menuItems = Menu::all(); 
         return view('pelanggan.dashboardPelanggan', compact('menuItems'));
     }
+
+    
+
 
     
 }

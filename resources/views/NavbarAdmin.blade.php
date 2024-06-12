@@ -201,7 +201,7 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="" class="sidebar-link">
+                    <a href="{{ route('show_daftar_pesanan') }}" class="sidebar-link">
                         <i class="lni lni-agenda"></i>
                         <span>Pesanan</span>
                     </a>
