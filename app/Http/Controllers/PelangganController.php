@@ -40,17 +40,22 @@ class PelangganController extends Controller
 
     
 
-    public function dashboard_pelanggan(){
+    public function dashboard_pelanggan()
+{
+    $menuItems = Menu::all(); 
+    $categories = Kategori::all();
 
-        $menuItems = Menu::all(); 
-        $categories = Kategori::all();
-        $settings = Setting::first();
-        if (!$settings) {
-            
-            return view('admin.setting')->with('settings', new Setting());
-        }
-        return view('pelanggan.dashboardPelanggan', compact('menuItems', 'categories', 'settings'),);
+    // Retrieve the latest settings record
+    $settings = Setting::latest()->first();
+
+    // Check if settings are null and create a new Setting instance if not found
+    if (!$settings) {
+        $settings = new Setting();
     }
+
+    // Pass the settings to the view
+    return view('pelanggan.dashboardPelanggan', compact('menuItems', 'categories', 'settings'));
+}
 
     
 

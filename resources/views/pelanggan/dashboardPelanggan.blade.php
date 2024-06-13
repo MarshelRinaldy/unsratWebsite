@@ -195,12 +195,14 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="kategoriDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="kategoriDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Kategori
                             </a>
                             <div class="dropdown-menu" aria-labelledby="kategoriDropdown">
-                                @foreach($categories as $category)
-                                    <a class="dropdown-item" href="#" data-category-id="{{ $category->id }}">{{ $category->nama }}</a>
+                                @foreach ($categories as $category)
+                                    <a class="dropdown-item" href="#"
+                                        data-category-id="{{ $category->id }}">{{ $category->nama }}</a>
                                 @endforeach
                             </div>
                         </li>
@@ -208,7 +210,7 @@
                 </div>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('keranjang_view') }}">Keranjang <span
-                    class="badge badge-danger">{{ count(session('cart', [])) }}</span></a>
+                            class="badge badge-danger">{{ count(session('cart', [])) }}</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('about_us') }}">Tentang Kami</a>
@@ -230,23 +232,24 @@
             <h2>Menu</h2>
         </div>
         <div class="kategori-wrapper">
-            @foreach($categories as $category)
-            <div class="kategori" data-category-id="{{ $category->id }}">
-                <h3>{{ $category->nama }}</h3>
-                <div class="card-deck">
-                    @foreach($category->menu as $menu)
-                    <div class="card">
-                        <img src="{{ asset('images/'.$menu->gambar) }}" class="card-img-top" alt="{{ $menu->nama }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $menu->nama }}</h5>
-                            <p class="card-text">Rp. {{ number_format($menu->harga, 0, ',', '.') }}</p>
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#productModal"
-                                onclick="showProductDetails('{{ $menu->nama }}', '{{ asset('images/'.$menu->gambar) }}', '{{ $menu->deskripsi }}', '{{ $menu->id }}')">Detail</button>
-                        </div>
+            @foreach ($categories as $category)
+                <div class="kategori" data-category-id="{{ $category->id }}">
+                    <h3>{{ $category->nama }}</h3>
+                    <div class="card-deck">
+                        @foreach ($category->menu as $menu)
+                            <div class="card">
+                                <img src="{{ asset('images/' . $menu->gambar) }}" class="card-img-top"
+                                    alt="{{ $menu->nama }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $menu->nama }}</h5>
+                                    <p class="card-text">Rp. {{ number_format($menu->harga, 0, ',', '.') }}</p>
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#productModal"
+                                        onclick="showProductDetails('{{ $menu->nama }}', '{{ asset('images/' . $menu->gambar) }}', '{{ $menu->deskripsi }}', '{{ $menu->id }}')">Detail</button>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
-            </div>
             @endforeach
         </div>
     </div>
@@ -334,7 +337,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         document.getElementById('orderButton').addEventListener('click', function() {
-            document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('menu').scrollIntoView({
+                behavior: 'smooth'
+            });
         });
 
         let selectedMenuId = null;
