@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Setting;
+use App\Models\Kategori;
 
 class SettingController extends Controller
 {
@@ -43,6 +44,7 @@ class SettingController extends Controller
     public function aboutUs()
     {
         $settings = Setting::first();
-        return view('pelanggan.about_us', compact('settings'));
+        $categories = Kategori::all();
+        return view('pelanggan.about_us', compact('settings', 'categories'));
     }
 }

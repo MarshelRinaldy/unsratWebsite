@@ -11,7 +11,17 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background: url('https://e1.pxfuel.com/desktop-wallpaper/875/702/desktop-wallpaper-ikan-bakar-djoni.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .overlay {
+            background-color: rgba(255, 255, 255, 0.8);
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
         }
 
         .container {
@@ -20,23 +30,28 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            position: relative;
+            z-index: 1;
         }
 
         .login-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             text-align: center;
-            width: 500px;
+            width: 400px;
+            border: 2px solid #FF7A00;
         }
 
         h1 {
             margin-bottom: 20px;
+            color: #FF7A00;
         }
 
         h2 {
             margin-bottom: 20px;
+            color: #333;
         }
 
         form {
@@ -46,7 +61,10 @@
         }
 
         label {
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+            color: #333;
+            width: 100%;
+            text-align: left;
         }
 
         input {
@@ -60,15 +78,17 @@
         button {
             width: 100%;
             padding: 10px;
-            background-color: #007bff;
+            background-color: #FF7A00;
             color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #e66a00;
         }
 
         .options {
@@ -76,8 +96,12 @@
         }
 
         a {
-            color: #007bff;
+            color: #FF7A00;
             text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
 
         .help-text {
@@ -85,7 +109,6 @@
             font-size: 14px;
         }
 
-        /* Alert Styles */
         .alert {
             padding: 15px;
             margin: 10px 0;
@@ -110,20 +133,17 @@
             border: 1px solid #f5c6cb;
         }
 
-        /* Animation for fade in effect */
         @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(-10px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        /* Additional styles to position the alert container */
         .alert-container {
             position: absolute;
             top: 20px;
@@ -137,6 +157,8 @@
 </head>
 
 <body>
+    <div class="overlay"></div>
+
     <div class="alert-container">
         @if (session('success'))
             <div class="alert alert-success" role="alert">
@@ -157,7 +179,7 @@
             <h2>SISTEM LOGIN PELANGGAN</h2>
             <form method="POST" action="{{ route('login') }}">
                 @method('post')
-                @csrf <!-- Token CSRF untuk keamanan -->
+                @csrf
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
                 <label for="password">Password:</label>

@@ -51,23 +51,43 @@
             border-color: #333;
         }
 
-        .card-deck {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin: 0 25px;
+        .card-deck-wrapper {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 10px;
+        }
 
+        .card-deck-wrapper::-webkit-scrollbar {
+            height: 10px;
+        }
+
+        .card-deck-wrapper::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .card-deck-wrapper::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        .card-deck-wrapper::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .card-deck {
+            display: inline-flex;
         }
 
         .card {
-            margin: 15px 15px;
+            margin: 15px;
             width: 250px;
-
+            border: 2px solid black;
+            border-radius: 0.75rem;
         }
 
         .card img {
             height: 200px;
             width: 100%;
+            object-fit: cover;
         }
 
         .card .card-body {
@@ -177,6 +197,15 @@
         .kategori {
             margin-bottom: 20px;
         }
+
+        .menu {
+            padding: 20px;
+        }
+
+        .kategori {
+            margin-bottom: 40px;
+        }
+
     </style>
 </head>
 
@@ -233,18 +262,20 @@
             @foreach($categories as $category)
             <div class="kategori" data-category-id="{{ $category->id }}">
                 <h3>{{ $category->nama }}</h3>
-                <div class="card-deck">
-                    @foreach($category->menu as $menu)
-                    <div class="card">
-                        <img src="{{ asset('images/'.$menu->gambar) }}" class="card-img-top" alt="{{ $menu->nama }}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $menu->nama }}</h5>
-                            <p class="card-text">Rp. {{ number_format($menu->harga, 0, ',', '.') }}</p>
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#productModal"
-                                onclick="showProductDetails('{{ $menu->nama }}', '{{ asset('images/'.$menu->gambar) }}', '{{ $menu->deskripsi }}', '{{ $menu->id }}')">Detail</button>
+                <div class="card-deck-wrapper">
+                    <div class="card-deck">
+                        @foreach($category->menu as $menu)
+                        <div class="card">
+                            <img src="{{ Storage::url($menu->image) }}" class="card-img-top" alt="{{ $menu->nama }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $menu->nama }}</h5>
+                                <p class="card-text">Rp. {{ number_format($menu->harga, 0, ',', '.') }}</p>
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#productModal"
+                                    onclick="showProductDetails('{{ $menu->nama }}', '{{ Storage::url($menu->image) }}', '{{ $menu->deskripsi }}', '{{ $menu->id }}')">Detail</button>
+                            </div>
                         </div>
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
             </div>
             @endforeach

@@ -6,6 +6,7 @@ use App\Models\Menu;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use App\Models\Setting;
+use App\Models\Kategori;
 class CartController extends Controller
 {   
 
@@ -63,7 +64,9 @@ class CartController extends Controller
             
             return view('admin.setting')->with('settings', new Setting());
         }
-        return view('pelanggan.keranjang', compact('settings'));
+
+        $categories = Kategori::all();
+        return view('pelanggan.keranjang', compact('settings', 'categories'));
     }
 
     

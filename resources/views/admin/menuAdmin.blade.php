@@ -45,7 +45,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="price" class="form-label">Harga</label>
-                        <input type="number" class="form-control" id="price" name="price" placeholder="Enter price" required>
+                        <input type="number" class="form-control" id="price" name="price" placeholder="masukan harga" required>
                     </div>
                     <div class="mb-3">
                         <label for="image" class="form-label">Gambar</label>

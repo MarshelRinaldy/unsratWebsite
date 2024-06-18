@@ -130,9 +130,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('dashboard_pelanggan') }}">Beranda</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Kategori</a>
-                </li>
+                <div class="dropdown-menu" aria-labelledby="kategoriDropdown">
+                    @foreach($categories as $category)
+                        <a class="dropdown-item" href="#" data-category-id="{{ $category->id }}">{{ $category->nama }}</a>
+                    @endforeach
+                </div>
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Keranjang <span
                             class="badge badge-danger">{{ count(session('cart', [])) }}</span></a>

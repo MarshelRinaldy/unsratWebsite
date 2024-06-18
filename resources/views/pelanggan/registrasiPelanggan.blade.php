@@ -12,7 +12,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,34 +20,41 @@
         }
 
         .container {
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            border: 2px solid #FF7A00;
         }
 
         .form-title {
             text-align: center;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            color: #FF7A00;
         }
 
         .form-group label {
             font-weight: bold;
+            color: #333;
         }
 
         button {
             width: 100%;
-            padding: 10px;
-            background-color: #666;
+            padding: 15px;
+            background-color: #FF7A00;
             color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
         }
 
         button:hover {
-            background-color: #555;
+            background-color: #e66a00;
         }
     </style>
 </head>
@@ -65,33 +72,34 @@
                     <input type="text" class="form-control" id="nama_awal" name="nama_awal" required>
                 </div>
                 <div class="form-group col-md-6">
+                    <label for="nama_akhir">Nama Akhir</label>
+                    <input type="text" class="form-control" id="nama_akhir" name="nama_akhir" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
                     <label for="alamat">Alamat</label>
                     <input type="text" class="form-control" id="alamat" name="alamat" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="nama_akhir">Nama Akhir</label>
-                    <input type="text" class="form-control" id="nama_akhir" name="nama_akhir" required>
-                </div>
-                <div class="form-group col-md-6">
                     <label for="email">Email</label>
                     <input type="email" class="form-control" id="email" name="email" required>
                 </div>
-            </div>
-            <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="kontak">Kontak</label>
                     <input type="text" class="form-control" id="kontak" name="mobile_number" required>
                 </div>
-                <div class="form-group col-md-6">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
                     <label for="password">Kata Sandi</label>
                     <input type="password" class="form-control" id="password" name="password" required>
                 </div>
             </div>
             <button type="submit" class="btn btn-dark">Buat Akun</button>
         </form>
-
     </div>
 
     <!-- Bootstrap JS and dependencies -->
