@@ -92,6 +92,8 @@
 
         .card .card-body {
             text-align: center;
+            flex-grow: 1;
+            /* Allows the card body to fill the space */
         }
 
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -224,12 +226,14 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="kategoriDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="kategoriDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Kategori
                             </a>
                             <div class="dropdown-menu" aria-labelledby="kategoriDropdown">
-                                @foreach($categories as $category)
-                                    <a class="dropdown-item" href="#" data-category-id="{{ $category->id }}">{{ $category->nama }}</a>
+                                @foreach ($categories as $category)
+                                    <a class="dropdown-item" href="#"
+                                        data-category-id="{{ $category->id }}">{{ $category->nama }}</a>
                                 @endforeach
                             </div>
                         </li>
@@ -237,11 +241,19 @@
                 </div>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('keranjang_view') }}">Keranjang <span
-                    class="badge badge-danger">{{ count(session('cart', [])) }}</span></a>
+                            class="badge badge-danger">{{ count(session('cart', [])) }}</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('about_us') }}">Tentang Kami</a>
                 </li>
+
+
+                <form id="logout-form" action="{{ route('logout_pelanggan') }}" method="POST">
+                    @csrf
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout_pelanggan') }}">Logout</a>
+                    </li>
+                </form>
             </ul>
         </div>
     </nav>
@@ -365,7 +377,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         document.getElementById('orderButton').addEventListener('click', function() {
-            document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('menu').scrollIntoView({
+                behavior: 'smooth'
+            });
         });
 
         let selectedMenuId = null;

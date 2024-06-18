@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             background: url('https://e1.pxfuel.com/desktop-wallpaper/875/702/desktop-wallpaper-ikan-bakar-djoni.jpg') no-repeat center center fixed;
@@ -55,9 +55,7 @@
         }
 
         form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            width: 100%;
         }
 
         label {
@@ -69,10 +67,10 @@
 
         input {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 5px;
+            padding: 12px;
+            margin-bottom: 20px;
             border: 1px solid #ccc;
+            border-radius: 4px;
         }
 
         button {
@@ -81,7 +79,7 @@
             background-color: #FF7A00;
             color: #fff;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
             text-transform: uppercase;
@@ -92,7 +90,8 @@
         }
 
         .options {
-            margin-top: 10px;
+            text-align: center;
+            margin-top: 20px;
         }
 
         a {
@@ -104,21 +103,18 @@
             text-decoration: underline;
         }
 
-        .help-text {
-            margin-top: 20px;
-            font-size: 14px;
+        a:hover {
+            text-decoration: underline;
         }
 
+        /* Alert Styles */
         .alert {
             padding: 15px;
-            margin: 10px 0;
-            border-radius: 5px;
-            width: 80%;
-            max-width: 500px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            width: 100%;
             text-align: center;
             animation: fadeIn 0.5s;
-            position: relative;
-            top: -20px;
         }
 
         .alert-success {

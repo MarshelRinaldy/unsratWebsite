@@ -38,22 +38,19 @@ class PelangganController extends Controller
         return redirect()->route('login_pelanggan_view')->with('success', 'Pelanggan berhasil terdaftar!');
     }
 
-    
+    public function dashboard_pelanggan()
+    {
+        $menuItems = Menu::where('status_menu', 'available')->get();
 
-    public function dashboard_pelanggan(){
-
-        $menuItems = Menu::all(); 
         $categories = Kategori::all();
-        $settings = Setting::first();
-        if (!$settings) {
-            
-            return view('admin.setting')->with('settings', new Setting());
-        }
-        return view('pelanggan.dashboardPelanggan', compact('menuItems', 'categories', 'settings'),);
-    }
-
     
+        $settings = Setting::latest()->first();
+        if (!$settings) {
+            $settings = new Setting();
+        }
 
+        return view('pelanggan.dashboardPelanggan', compact('menuItems', 'categories', 'settings'));
+    }
 
     
 }

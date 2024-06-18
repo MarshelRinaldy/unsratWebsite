@@ -140,7 +140,7 @@
                             class="badge badge-danger">{{ count(session('cart', [])) }}</span></a>
                 </li>
                 <li class="nav-item">
-                     <a class="nav-link" href="{{ route('about_us') }}">Tentang Kami</a>
+                    <a class="nav-link" href="{{ route('about_us') }}">Tentang Kami</a>
                 </li>
 
             </ul>
@@ -192,11 +192,11 @@
                     <a href="{{ route('orderConfirmation') }}" class="btn btn-success">Proceed to Checkout</a>
                 </div>
             @else
-            <div class="container alert-container">
-                <div class="alert alert-warning" role="alert">
-                    Your cart is empty.
+                <div class="container alert-container">
+                    <div class="alert alert-warning" role="alert">
+                        Your cart is empty.
+                    </div>
                 </div>
-            </div>
             @endif
         </div>
     </div>

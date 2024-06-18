@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Menu;
+use App\Models\Admin;
+use App\Models\Setting;
+use App\Models\Kategori;
+use App\Models\Pelanggan;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Admin;
-use App\Models\Pelanggan;
-use App\Models\Kategori;
-use App\Models\Menu;
 
 class DatabaseSeeder extends Seeder
 {
@@ -47,54 +48,62 @@ class DatabaseSeeder extends Seeder
             Pelanggan::create($data);
         }
 
-        $kategori = [
-            ['nama' => 'Appetizers'],
-            ['nama' => 'Main Courses'],
-            ['nama' => 'Desserts'],
-            ['nama' => 'Beverages'],
-        ];
 
-        foreach ($kategori as $kat) {
-            Kategori::create($kat);
-        }
+        Setting::create([
+            'system_name' => 'Your System Name',
+            'email' => 'your-email@example.com',
+            'contact' => 'Your Contact Information',
+            'about_us' => 'About us content goes here.',
+        ]);
 
-        $menus = [
-            [
-                'nama' => 'Spring Rolls',
-                'deskripsi' => 'Crispy spring rolls with a delicious vegetable filling.',
-                'harga' => 15000,
-                'image' => 'spring_rolls.jpg',
-                'status_menu' => 'available',
-                'kategori_id' => Kategori::where('nama', 'Appetizers')->first()->id,
-            ],
-            [
-                'nama' => 'Grilled Chicken',
-                'deskripsi' => 'Juicy grilled chicken with a side of roasted vegetables.',
-                'harga' => 50000,
-                'image' => 'grilled_chicken.jpg',
-                'status_menu' => 'available',
-                'kategori_id' => Kategori::where('nama', 'Main Courses')->first()->id,
-            ],
-            [
-                'nama' => 'Chocolate Cake',
-                'deskripsi' => 'Rich and moist chocolate cake with a creamy frosting.',
-                'harga' => 30000,
-                'image' => 'chocolate_cake.jpg',
-                'status_menu' => 'available',
-                'kategori_id' => Kategori::where('nama', 'Desserts')->first()->id,
-            ],
-            [
-                'nama' => 'Iced Tea',
-                'deskripsi' => 'Refreshing iced tea with a hint of lemon.',
-                'harga' => 10000,
-                'image' => 'iced_tea.jpg',
-                'status_menu' => 'available',
-                'kategori_id' => Kategori::where('nama', 'Beverages')->first()->id,
-            ],
-        ];
+        // $kategori = [
+        //     ['nama' => 'Appetizers'],
+        //     ['nama' => 'Main Courses'],
+        //     ['nama' => 'Desserts'],
+        //     ['nama' => 'Beverages'],
+        // ];
 
-        foreach ($menus as $menu) {
-            Menu::create($menu);
-        }
+        // foreach ($kategori as $kat) {
+        //     Kategori::create($kat);
+        // }
+
+        // $menus = [
+        //     [
+        //         'nama' => 'Spring Rolls',
+        //         'deskripsi' => 'Crispy spring rolls with a delicious vegetable filling.',
+        //         'harga' => 15000,
+        //         'image' => 'spring_rolls.jpg',
+        //         'status_menu' => 'available',
+        //         'kategori_id' => Kategori::where('nama', 'Appetizers')->first()->id,
+        //     ],
+        //     [
+        //         'nama' => 'Grilled Chicken',
+        //         'deskripsi' => 'Juicy grilled chicken with a side of roasted vegetables.',
+        //         'harga' => 50000,
+        //         'image' => 'grilled_chicken.jpg',
+        //         'status_menu' => 'available',
+        //         'kategori_id' => Kategori::where('nama', 'Main Courses')->first()->id,
+        //     ],
+        //     [
+        //         'nama' => 'Chocolate Cake',
+        //         'deskripsi' => 'Rich and moist chocolate cake with a creamy frosting.',
+        //         'harga' => 30000,
+        //         'image' => 'chocolate_cake.jpg',
+        //         'status_menu' => 'available',
+        //         'kategori_id' => Kategori::where('nama', 'Desserts')->first()->id,
+        //     ],
+        //     [
+        //         'nama' => 'Iced Tea',
+        //         'deskripsi' => 'Refreshing iced tea with a hint of lemon.',
+        //         'harga' => 10000,
+        //         'image' => 'iced_tea.jpg',
+        //         'status_menu' => 'available',
+        //         'kategori_id' => Kategori::where('nama', 'Beverages')->first()->id,
+        //     ],
+        // ];
+
+        // foreach ($menus as $menu) {
+        //     Menu::create($menu);
+        // }
     }
 }

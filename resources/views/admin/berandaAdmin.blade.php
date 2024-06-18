@@ -8,7 +8,7 @@
                 <div class="card bg-primary text-white shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">Total Active Menu</h5>
-                        <p class="display-4">3</p>
+                        <p class="display-4">{{ $totalActiveMenu }}</p>
                     </div>
                 </div>
             </div>
@@ -16,7 +16,7 @@
                 <div class="card bg-secondary text-white shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">Total Inactive Menu</h5>
-                        <p class="display-4">0</p>
+                        <p class="display-4">{{ $totalInactiveMenu }}</p>
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                 <div class="card bg-warning text-dark shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">Orders for Verification</h5>
-                        <p class="display-4">0</p>
+                        <p class="display-4">{{ $ordersForVerification }}</p>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                 <div class="card bg-success text-white shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">Confirmed Orders</h5>
-                        <p class="display-4">1</p>
+                        <p class="display-4">{{ $confirmedOrders }}</p>
                     </div>
                 </div>
             </div>
