@@ -14,9 +14,16 @@ class AdminController extends Controller
 {
 
     //INI UNTUK BERANDA
-    public function beranda_admin(){
-        return view('admin.berandaAdmin');
-    }
+    public function beranda_admin()
+{
+
+    $totalActiveMenu = Menu::where('status_menu', 'available')->count();
+    $totalInactiveMenu = Menu::where('status_menu', 'unavailable')->count();
+    $ordersForVerification = Pesanan::where('status_pesanan', 'Diproses')->count();
+    $confirmedOrders = Pesanan::where('status_pesanan', 'Confirmed')->count();
+
+    return view('admin.berandaAdmin', compact('totalActiveMenu', 'totalInactiveMenu', 'ordersForVerification', 'confirmedOrders'));
+}
 
     //INI UNTUK MENU
     public function menu_admin(){
@@ -33,7 +40,7 @@ class AdminController extends Controller
         $validated = $request->validate([
             'menu' => 'required',
             'description' => 'required',
-            'available' => 'required',
+            // 'available' => 'required',
             'category' => 'required|exists:kategori,id',
             'price' => 'required',
             'image' => 'required',
@@ -96,8 +103,6 @@ class AdminController extends Controller
         return redirect()->route('menu_admin')->with('success', 'Menu berhasil dihapus!');
     }
 
-
-    
     
     //INI UNTUK KATEGORI
     public function kategori_admin(){
@@ -143,8 +148,6 @@ class AdminController extends Controller
 
         return redirect()->route('kategori_admin')->with('success', 'Kategori berhasil dihapus!');
     }
-
-
 
     //INI UNTUK USERS
     public function mengelola_users_admin(){
@@ -210,7 +213,18 @@ class AdminController extends Controller
 
 
     //INI UNTUK DAFTAR PESANAN
-   public function show_daftar_pesanan(Request $request)
+//    public function show_daftar_pesanan(Request $request)
+//     {
+//         $status = $request->input('status', 'Diproses'); 
+//         $pesanan = Pesanan::where('status_pesanan', $status)->get();
+
+//         return view('admin.daftarPesanan', [
+//             'pesanan' => $pesanan,
+//             'status' => $status
+//         ]);
+//     }
+
+    public function show_daftar_pesanan(Request $request)
     {
         $status = $request->input('status', 'Diproses'); 
         $pesanan = Pesanan::where('status_pesanan', $status)->get();
@@ -221,6 +235,5 @@ class AdminController extends Controller
         ]);
     }
 
-    
 
 }

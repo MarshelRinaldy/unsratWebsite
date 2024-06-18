@@ -2,12 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Menu;
+use App\Models\Admin;
+use App\Models\Setting;
+use App\Models\Kategori;
+use App\Models\Pelanggan;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Admin;
-use App\Models\Pelanggan;
-use App\Models\Kategori;
-use App\Models\Menu;
 
 class DatabaseSeeder extends Seeder
 {
@@ -46,6 +47,14 @@ class DatabaseSeeder extends Seeder
         foreach ($pelangganData as $data) {
             Pelanggan::create($data);
         }
+
+
+        Setting::create([
+            'system_name' => 'Your System Name',
+            'email' => 'your-email@example.com',
+            'contact' => 'Your Contact Information',
+            'about_us' => 'About us content goes here.',
+        ]);
 
         // $kategori = [
         //     ['nama' => 'Appetizers'],

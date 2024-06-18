@@ -55,23 +55,28 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            margin: 0 25px;
-
+            margin: 0 10px;
         }
 
         .card {
-            margin: 15px 15px;
-            width: 250px;
-
+            margin: 10px;
+            flex: 0 1 250px;
+            /* Flex basis changed to 250px and grow and shrink are allowed */
+            display: flex;
+            flex-direction: column;
         }
 
         .card img {
             height: 200px;
             width: 100%;
+            object-fit: cover;
+            /* Ensures the image covers the area without distortion */
         }
 
         .card .card-body {
             text-align: center;
+            flex-grow: 1;
+            /* Allows the card body to fill the space */
         }
 
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -177,6 +182,27 @@
         .kategori {
             margin-bottom: 20px;
         }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .card-deck {
+                justify-content: space-around;
+            }
+
+            .card {
+                flex: 0 1 90%;
+                /* Takes more space on smaller screens */
+            }
+
+            .main-content h1 {
+                font-size: 4rem;
+                /* Smaller font size on smaller screens */
+            }
+
+            .main-content h2 {
+                font-size: 2rem;
+            }
+        }
     </style>
 </head>
 
@@ -215,6 +241,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('about_us') }}">Tentang Kami</a>
                 </li>
+
+
+                <form id="logout-form" action="{{ route('logout_pelanggan') }}" method="POST">
+                    @csrf
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout_pelanggan') }}">Logout</a>
+                    </li>
+                </form>
             </ul>
         </div>
     </nav>
@@ -236,15 +270,15 @@
                 <div class="kategori" data-category-id="{{ $category->id }}">
                     <h3>{{ $category->nama }}</h3>
                     <div class="card-deck">
-                        @foreach ($category->menu as $menu)
+                        @foreach ($menuItems->where('kategori_id', $category->id) as $menu)
                             <div class="card">
-                                <img src="{{ asset('images/' . $menu->gambar) }}" class="card-img-top"
+                                <img src="{{ asset('images/' . $menu->image) }}" class="card-img-top"
                                     alt="{{ $menu->nama }}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $menu->nama }}</h5>
                                     <p class="card-text">Rp. {{ number_format($menu->harga, 0, ',', '.') }}</p>
                                     <button class="btn btn-primary" data-toggle="modal" data-target="#productModal"
-                                        onclick="showProductDetails('{{ $menu->nama }}', '{{ asset('images/' . $menu->gambar) }}', '{{ $menu->deskripsi }}', '{{ $menu->id }}')">Detail</button>
+                                        onclick="showProductDetails('{{ $menu->nama }}', '{{ asset('images/' . $menu->image) }}', '{{ $menu->deskripsi }}', '{{ $menu->id }}')">Detail</button>
                                 </div>
                             </div>
                         @endforeach

@@ -22,8 +22,7 @@ class PemesananController extends Controller
             // Handle the case where no settings are found, possibly return an empty view or create default settings.
             return view('admin.setting')->with('settings', new Setting());
         }
-        
-
+    
         return view('pelanggan.konfirmasiPesanan', compact('cart', 'total', 'settings'));
     }
 

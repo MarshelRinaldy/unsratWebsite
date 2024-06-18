@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
+            background-color: #f4f4f4;
+            color: #333;
         }
 
         .container {
@@ -20,59 +21,59 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            padding: 20px;
         }
 
         .login-container {
             background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 500px;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
         }
 
-        h1 {
-            margin-bottom: 20px;
-        }
-
+        h1,
         h2 {
-            margin-bottom: 20px;
+            color: #333;
         }
 
         form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            width: 100%;
         }
 
         label {
-            margin-bottom: 10px;
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
 
         input {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 5px;
+            padding: 12px;
+            margin-bottom: 20px;
             border: 1px solid #ccc;
+            border-radius: 4px;
         }
 
         button {
             width: 100%;
-            padding: 10px;
-            background-color: #007bff;
+            padding: 12px;
+            background-color: #0056b3;
             color: #fff;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #004085;
         }
 
         .options {
-            margin-top: 10px;
+            text-align: center;
+            margin-top: 20px;
         }
 
         a {
@@ -80,22 +81,17 @@
             text-decoration: none;
         }
 
-        .help-text {
-            margin-top: 20px;
-            font-size: 14px;
+        a:hover {
+            text-decoration: underline;
         }
 
-        /* Alert Styles */
         .alert {
             padding: 15px;
-            margin: 10px 0;
-            border-radius: 5px;
-            width: 80%;
-            max-width: 500px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            width: 100%;
             text-align: center;
             animation: fadeIn 0.5s;
-            position: relative;
-            top: -20px;
         }
 
         .alert-success {

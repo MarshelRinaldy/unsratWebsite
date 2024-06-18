@@ -28,7 +28,7 @@ Route::get('/login_pelanggan_view', [LoginController::class, 'login_pelanggan_vi
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/login/admin', [LoginController::class, 'login_admin'])->name('login_admin');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
-
+Route::post('/logout_pelanggan', [LoginController::class, 'logout_pelanggan'])->name('logout_pelanggan');
 
 
 //DASHBOARD
@@ -93,9 +93,12 @@ Route::get('/about-us', [SettingController::class, 'aboutUs'])->name('about_us')
 
 
 //LOGOUT
-Route::get('/logout_admin', function () {
-    Auth::logout();
-    return redirect()->route('login_admin');
-})->name('logout_admin');
+// Route::get('/logout_admin', function () {
+//     Auth::logout();
+//     return redirect()->route('login_admin');
+// })->name('logout_admin');
+
+
+
 
 

@@ -65,4 +65,11 @@ class LoginController extends Controller
         Auth::logout();
         return redirect()->route('login_admin_view');
     }
+
+
+     public function logout_pelanggan()
+    {
+        Auth::logout();
+        return view('pelanggan.loginPelanggan');
+    }
 }
