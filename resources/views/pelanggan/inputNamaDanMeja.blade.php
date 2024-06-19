@@ -8,6 +8,8 @@
     <title>Order Confirmation</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Toastr CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -94,28 +96,55 @@
         <!-- Confirmation Form -->
         <div class="confirmation-summary">
             <h5>Confirm Your Order</h5>
-            <form action="{{ route('inputan_nama_dan_meja', $order_id) }}" method="POST">
+            <form id="orderForm" action="{{ route('inputan_nama_dan_meja', $order_id) }}" method="POST">
                 @method('patch')
                 @csrf
                 <div class="form-group">
                     <label for="name">Nama</label>
-                    <input type="text" class="form-control" id="name" name="nama"
-                        placeholder="Masukkan Nama Anda" required>
+                    <input type="text" class="form-control" id="name" name="nama" placeholder="Masukkan Nama Anda" required>
                 </div>
                 <div class="form-group">
                     <label for="meja">No Meja</label>
-                    <input type="number" class="form-control" id="meja" name="meja"
-                        placeholder="Masukkan Nomor Meja" required>
+                    <input type="number" class="form-control" id="meja" name="meja" placeholder="Masukkan Nomor Meja" required>
                 </div>
                 <button type="submit">Proses Checkout</button>
             </form>
         </div>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#orderForm').on('submit', function(event) {
+                event.preventDefault(); 
+
+                var form = $(this);
+                var actionUrl = form.attr('action');
+
+                $.ajax({
+                    type: 'POST',
+                    url: actionUrl,
+                    data: form.serialize(),
+                    success: function(response) {
+                        toastr.success('Pesanan berhasil di pesan');
+                        setTimeout(function() {
+                            window.location.href = "{{ route('dashboard_pelanggan') }}";
+                        }, 2000); 
+                    },
+                    error: function(error) {
+                        toastr.error('Terjadi kesalahan saat memproses pesanan');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
