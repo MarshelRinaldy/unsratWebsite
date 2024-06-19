@@ -244,10 +244,33 @@
             margin-bottom: 40px;
         }
 
+        .alert-container {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
     </style>
 </head>
 
 <body>
+<div class="alert-container">
+        @if (session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ session('error') }}
+            </div>
+        @endif
+    </div>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="#">{{ $settings->system_name }}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -412,6 +435,24 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+       
+        const alerts = document.querySelectorAll('.alert');
+       
+        alerts.forEach(alert => {
+            setTimeout(() => {
+                alert.style.transition = 'opacity 0.5s ease';
+                alert.style.opacity = '0';
+                setTimeout(() => alert.remove(), 500);
+            }, 2000);
+        });
+    });
+</script>
+
+
     <script>
         document.getElementById('orderButton').addEventListener('click', function() {
             document.getElementById('menu').scrollIntoView({
