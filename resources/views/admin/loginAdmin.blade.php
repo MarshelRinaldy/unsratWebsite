@@ -112,7 +112,6 @@
             </div>
             <div class="col-md-7 d-flex align-items-center justify-content-center bg-white">
                 <div class="card p-2 bg-light">
-                    <img src="{{ asset('app/public/image/logo-db.PNG') }}" alt="Logo" class="logo">
                     <div class="card-body">
                         <form method="POST" action="{{ route('login_admin') }}">
                             @csrf
