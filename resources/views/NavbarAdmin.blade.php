@@ -50,7 +50,7 @@
         min-width: 70px;
         z-index: 1000;
         transition: all .25s ease-in-out;
-        background-color: rgba(5, 25, 106, 0.8);
+        background-color: #2A6166;
         display: flex;
         flex-direction: column;
     }
@@ -134,7 +134,7 @@
         position: absolute;
         top: 0;
         left: 70px;
-        background-color: #0e2238;
+        background-color: #2A6166;
         padding: 0;
         min-width: 15rem;
         display: none;
@@ -185,10 +185,10 @@
         <aside id="sidebar">
             <div class="d-flex">
                 <button class="toggle-btn" type="button">
-                    {{-- <i class="lni lni-grid-alt">Admin</i> --}}
+                    <i class="lni lni-grid-alt"></i>
                 </button>
                 <div class="sidebar-logo">
-                    <a href="#"></a>
+                    <a href="#">Admin</a>
                 </div>
             </div>
 
@@ -240,16 +240,11 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
-                <a href="#" class="sidebar-link"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <a href="#" class="sidebar-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="lni lni-exit"></i>
                     <span>Logout</span>
                 </a>
             </div>
-
-
-
-
         </aside>
 
         <div class="main">

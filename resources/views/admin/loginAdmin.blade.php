@@ -14,8 +14,8 @@
             background-color: #f7f7f7;
         }
 
-        .bg-orange {
-            background-color: #ff7a00;
+        .bg-primary-color {
+            background-color: #2A6166;
         }
 
         .bg-white {
@@ -31,16 +31,25 @@
 
         .card {
             width: 500px;
-            border: 2px solid #FF7A00;
+            border: 2px solid #2A6166;
             border-radius: 20px;
+            position: relative;
         }
 
         .card-body {
             padding: 2rem;
         }
 
+        .logo {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 60px;
+            height: auto;
+        }
+
         button {
-            background-color: #ff7a00;
+            background-color: #2A6166;
             border: none;
             color: white;
         }
@@ -84,7 +93,7 @@
         }
 
         button:hover {
-            background-color: #cc5f00;
+            background-color: #20494c;
         }
     </style>
 </head>
@@ -98,11 +107,12 @@
 
     <div class="container-fluid vh-100 d-flex">
         <div class="row flex-fill">
-            <div class="col-md-5 d-flex align-items-center justify-content-center bg-orange">
+            <div class="col-md-5 d-flex align-items-center justify-content-center bg-primary-color">
                 <h1 class="text-white display-4">Dapoer Boulevard -<br> Admin Site</h1>
             </div>
             <div class="col-md-7 d-flex align-items-center justify-content-center bg-white">
                 <div class="card p-2 bg-light">
+                    <img src="{{ asset('app/public/image/logo-db.PNG') }}" alt="Logo" class="logo">
                     <div class="card-body">
                         <form method="POST" action="{{ route('login_admin') }}">
                             @csrf
@@ -117,7 +127,7 @@
                                     placeholder="Password" required>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-block" style="background-color: #FF7A00; color: white;">Login</button>
+                                <button type="submit" class="btn btn-block" style="background-color: #2A6166; color: white;">Login</button>
                             </div>
                         </form>
                         @if (session('error'))
