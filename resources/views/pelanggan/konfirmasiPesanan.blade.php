@@ -15,7 +15,7 @@
         }
 
         .navbar {
-            background-color: #343a40 !important;
+            background-color: #ff7a00 !important;
         }
 
         .confirmation-container {
@@ -101,18 +101,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('dashboard_pelanggan') }}">Beranda</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Kategori</a>
-                </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Keranjang <span
                             class="badge badge-danger">{{ count(session('cart', [])) }}</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('about_us') }}">Tentang Kami</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
                 </li>
             </ul>
         </div>

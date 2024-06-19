@@ -17,7 +17,7 @@
         }
 
         .navbar {
-            background-color: #000000 !important;
+            background-color: #FF7A00 !important;
         }
 
         .main-content {
@@ -47,14 +47,19 @@
         }
 
         .main-content .btn-dark {
-            background-color: #333;
-            border-color: #333;
+            background-color: #FF7A00;
+            border-color: #FF7A00;
         }
 
         .card-deck-wrapper {
             overflow-x: auto;
             white-space: nowrap;
             padding: 10px;
+        }
+
+        .btn-btn-primary{
+            background-color: #FF7A00;
+            border-color: #FF7A00;
         }
 
         .card-deck-wrapper::-webkit-scrollbar {
@@ -73,28 +78,59 @@
             background: #555;
         }
 
-        .card-deck {
-            display: inline-flex;
-        }
-
         .card {
-            margin: 15px;
-            width: 250px;
-            border: 2px solid black;
-            border-radius: 0.75rem;
-        }
+        border: 1px solid #FF4A00;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        display: inline-block;
+        vertical-align: top;
+        width: calc(33.333% - 20px); /* Adjust width to fit three cards in a row with margins */
+        margin: 10px; /* Adjust spacing between cards */
+        box-sizing: border-box;
+    }
 
-        .card img {
-            height: 200px;
-            width: 100%;
-            object-fit: cover;
-        }
+    .card img {
+        max-height: 200px;
+        object-fit: cover;
+        width: 100%;
+    }
 
-        .card .card-body {
-            text-align: center;
-            flex-grow: 1;
-            /* Allows the card body to fill the space */
+    .card-title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 10px; /* Adjust spacing */
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .card-text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 10px; /* Adjust spacing */
+    }
+
+    .card-deck-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    @media (max-width: 768px) {
+        .card {
+            width: calc(50% - 20px); /* Adjust width to fit two cards in a row with margins */
         }
+    }
+
+    @media (max-width: 576px) {
+        .card {
+            width: calc(100% - 20px); /* Adjust width to fit one card in a row with margins */
+        }
+    }
 
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
@@ -124,7 +160,7 @@
         }
 
         .footer {
-            background-color: #24262b;
+            background-color: #FF7A00;
             padding: 70px 0;
         }
 
@@ -135,7 +171,7 @@
 
         .footer-col h4 {
             font-size: 18px;
-            color: #ffffff;
+            color: #f1f1f1;
             text-transform: capitalize;
             margin-bottom: 35px;
             font-weight: 500;
@@ -147,7 +183,7 @@
             position: absolute;
             left: 0;
             bottom: -10px;
-            background-color: #FF7A00;
+            background-color: Black;
             height: 2px;
             box-sizing: border-box;
             width: 50px;
@@ -163,7 +199,7 @@
             color: #ffffff;
             text-decoration: none;
             font-weight: 300;
-            color: #bbbbbb;
+            color: #ffffff;
             display: block;
             transition: all 0.3s ease;
         }
@@ -248,12 +284,13 @@
                 </li>
 
 
-                <form id="logout-form" action="{{ route('logout_pelanggan') }}" method="POST">
+                <form id="logout-form" action="{{ route('logout_pelanggan') }}" method="POST" style="display: none;">
                     @csrf
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout_pelanggan') }}">Logout</a>
-                    </li>
                 </form>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -267,32 +304,32 @@
     </div>
 
     <div class="menu text-center" id="menu">
-        <div>
-            <h2>Menu</h2>
-        </div>
-        <div class="kategori-wrapper">
-            @foreach($categories as $category)
-            <div class="kategori" data-category-id="{{ $category->id }}">
-                <h3>{{ $category->nama }}</h3>
-                <div class="card-deck-wrapper">
-                    <div class="card-deck">
-                        @foreach($category->menu as $menu)
-                        <div class="card">
-                            <img src="{{ Storage::url($menu->image) }}" class="card-img-top" alt="{{ $menu->nama }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $menu->nama }}</h5>
-                                <p class="card-text">Rp. {{ number_format($menu->harga, 0, ',', '.') }}</p>
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#productModal"
-                                    onclick="showProductDetails('{{ $menu->nama }}', '{{ Storage::url($menu->image) }}', '{{ $menu->deskripsi }}', '{{ $menu->id }}')">Detail</button>
-                            </div>
+    <div>
+        <h2>Menu</h2>
+    </div>
+    <div class="kategori-wrapper">
+        @foreach($categories as $category)
+        <div class="kategori" data-category-id="{{ $category->id }}">
+            <h3>{{ $category->nama }}</h3>
+            <div class="card-deck-wrapper">
+                <div class="card-deck">
+                    @foreach($category->menu as $menu)
+                    <div class="card">
+                        <img src="{{ Storage::url($menu->image) }}" class="card-img-top" alt="{{ $menu->nama }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $menu->nama }}</h5>
+                            <p class="card-text">Rp. {{ number_format($menu->harga, 0, ',', '.') }}</p>
+                            <button class="btn btn-primary" style="background-color: #FF4A00;" data-toggle="modal" data-target="#productModal"
+                                 onclick="showProductDetails('{{ $menu->nama }}', '{{ Storage::url($menu->image) }}', '{{ $menu->deskripsi }}', '{{ $menu->id }}')">Detail</button>
                         </div>
-                        @endforeach
                     </div>
+                    @endforeach
                 </div>
             </div>
-            @endforeach
         </div>
+        @endforeach
     </div>
+</div>
 
     <!-- Modal -->
     <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel"
@@ -319,7 +356,7 @@
                                 <button class="btn btn-outline-secondary" type="button" id="incrementBtn">+</button>
                             </div>
                         </div>
-                        <button class="btn btn-primary" id="addToCartBtn">Tambahkan ke Keranjang</button>
+                        <button class="btn btn-primary" style="background-color: #FF4A00;" id="addToCartBtn">Tambahkan ke Keranjang</button>
                     </div>
                 </div>
             </div>
@@ -420,6 +457,14 @@
                     }
                 });
             });
+        });
+    </script>
+
+<script src="script.js"></script>
+    <script>
+        const hamBurger = document.querySelector(".toggle-btn");
+        hamBurger.addEventListener("click", function() {
+            document.querySelector("#sidebar").classList.toggle("expand");
         });
     </script>
 </body>

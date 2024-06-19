@@ -31,6 +31,7 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/logout_pelanggan', [LoginController::class, 'logout_pelanggan'])->name('logout_pelanggan');
 
 
+
 //DASHBOARD
 Route::get('/dashboard_pelanggan', [PelangganController::class, 'dashboard_pelanggan'])->name('dashboard_pelanggan');
 Route::get('/admin-dashboard', function () {

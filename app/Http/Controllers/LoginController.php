@@ -70,6 +70,6 @@ class LoginController extends Controller
      public function logout_pelanggan()
     {
         Auth::logout();
-        return view('pelanggan.loginPelanggan');
+        return redirect()->route('login_pelanggan_view');
     }
 }

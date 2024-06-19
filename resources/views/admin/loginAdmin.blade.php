@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dapoer Boulevard - Admin Site</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f7f7;
         }
 
         .bg-orange {
@@ -23,10 +25,14 @@
         .text-white {
             color: #ffffff;
             text-align: center;
+            font-family: Georgia, serif;
+            font-weight: 700;
         }
 
         .card {
             width: 500px;
+            border: 2px solid #FF7A00;
+            border-radius: 20px;
         }
 
         .card-body {
@@ -34,8 +40,9 @@
         }
 
         button {
-            background-color: #6c757d;
+            background-color: #ff7a00;
             border: none;
+            color: white;
         }
 
         .alert {
@@ -62,9 +69,22 @@
             border: 1px solid #f5c6cb;
         }
 
-        .card{
-            border: 2px solid white;
+        .form-group label {
+            font-weight: 600;
+        }
+
+        .form-control {
+            border-radius: 10px;
+        }
+
+        button {
+            width: 120px;
             border-radius: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #cc5f00;
         }
     </style>
 </head>
@@ -76,29 +96,29 @@
         </div>
     @endif
 
-
     <div class="container-fluid vh-100 d-flex">
         <div class="row flex-fill">
             <div class="col-md-5 d-flex align-items-center justify-content-center bg-orange">
-                <h1 class="text-white">Dapoer Boulevard -<br> Admin Site</h1>
+                <h1 class="text-white display-4">Dapoer Boulevard -<br> Admin Site</h1>
             </div>
             <div class="col-md-7 d-flex align-items-center justify-content-center bg-white">
-                <div class="card p-2 bg-orange">
+                <div class="card p-2 bg-light">
                     <div class="card-body">
                         <form method="POST" action="{{ route('login_admin') }}">
                             @csrf
                             <div class="form-group">
-                                <label for="username" class="text-white">Username</label>
+                                <label for="username">Username</label>
                                 <input type="text" class="form-control" id="username" name="username"
                                     placeholder="Enter username" required>
                             </div>
                             <div class="form-group">
-                                <label for="password" class="text-white">Password</label>
+                                <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" name="password"
                                     placeholder="Password" required>
                             </div>
-                            <button style="width: 120px; border-radius: 20px;" type="submit"
-                                class="btn btn-primary btn-block">Login</button>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-block" style="background-color: #FF7A00; color: white;">Login</button>
+                            </div>
                         </form>
                         @if (session('error'))
                             <div class="alert alert-danger mt-3">

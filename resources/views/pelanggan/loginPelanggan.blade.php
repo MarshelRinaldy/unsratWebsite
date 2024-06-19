@@ -56,13 +56,13 @@
 
         form {
             width: 100%;
+            text-align: left;
         }
 
         label {
             margin-bottom: 5px;
             color: #333;
             width: 100%;
-            text-align: left;
         }
 
         input {
@@ -97,10 +97,6 @@
         a {
             color: #FF7A00;
             text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
         }
 
         a:hover {

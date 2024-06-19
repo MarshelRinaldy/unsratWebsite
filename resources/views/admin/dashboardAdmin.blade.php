@@ -1,6 +1,5 @@
 @extends('NavbarAdmin')
 
-
 <style>
     /* Custom styles for the sidebar */
     .sidebar {
@@ -12,13 +11,13 @@
         /* Hide sidebar by default */
         width: 250px;
         transition: left 0.3s ease-in-out;
-        padding: 48px 0 0;
+        padding: 20px 0;
         /* Padding from top to align with the navbar */
         overflow-x: hidden;
         /* Prevent horizontal scrollbar */
         overflow-y: auto;
         /* Enable vertical scrollbar if needed */
-        background-color: #f8f9fa;
+        background-color: #343a40;
     }
 
     .sidebar.show {
@@ -41,15 +40,19 @@
     /* Sidebar nav links */
     .sidebar .nav-link {
         font-weight: 500;
-        color: #333;
+        color: #ddd;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     .sidebar .nav-link .fas {
         margin-right: 10px;
     }
 
-    .sidebar .nav-link.active {
-        color: #007bff;
+    .sidebar .nav-link.active,
+    .sidebar .nav-link:hover {
+        background-color: #495057;
+        color: #fff;
     }
 
     /* Media queries for responsive design */
@@ -76,6 +79,62 @@
             /* Reset margin for mobile view */
         }
     }
+
+    /* Navbar brand styling */
+    .navbar-brand {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: #fff !important;
+    }
+
+    /* Navbar button styling */
+    .navbar-dark .navbar-toggler {
+        border-color: #fff;
+    }
+
+    .navbar-dark .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+
+    /* Button styles */
+    .btn-outline-secondary {
+        color: #343a40;
+        border-color: #343a40;
+    }
+
+    .btn-outline-secondary:hover {
+        background-color: #343a40;
+        color: #fff;
+    }
+
+    /* Main content header */
+    .main-content h1 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        color: #343a40;
+    }
+
+    /* Main content body */
+    .content p {
+        font-family: 'Roboto', sans-serif;
+        font-size: 1rem;
+        color: #343a40;
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #6c757d;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #f1f1f1;
+    }
 </style>
 
 <body>
@@ -101,7 +160,7 @@
         <!-- Sidebar and Content -->
         <div class="container-fluid">
             <div class="row">
-                <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+                <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar">
                     <div class="position-sticky">
                         <ul class="nav flex-column">
                             <li class="nav-item">

@@ -93,12 +93,12 @@
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-12" >
                     <label for="password">Kata Sandi</label>
                     <input type="password" class="form-control" id="password" name="password" required>
                 </div>
             </div>
-            <button type="submit" class="btn btn-dark">Buat Akun</button>
+            <button type="submit" class="btn btn-dark" style="background-color: #FF7A00;" >Buat Akun</button>
         </form>
     </div>
 

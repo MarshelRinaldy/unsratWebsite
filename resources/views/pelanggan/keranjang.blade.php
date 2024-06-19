@@ -11,11 +11,12 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
+            background-color: #ffffff; /* Warna latar belakang body */
+            color: #333333; /* Warna teks utama */
         }
 
         .navbar {
-            background-color: #343a40 !important;
+            background-color: #FF7A00 !important; /* Warna latar belakang navbar */
         }
 
         .cart-container {
@@ -28,15 +29,15 @@
         .cart-item {
             display: flex;
             align-items: center;
-            padding: 10px;
+            padding: 15px;
             border-bottom: 1px solid #e0e0e0;
             width: 100%;
             max-width: 800px;
         }
 
         .cart-item img {
-            width: 80px;
-            height: 80px;
+            width: 100px;
+            height: 100px;
             object-fit: cover;
             border-radius: 8px;
             margin-right: 20px;
@@ -49,6 +50,7 @@
         .cart-item-title {
             font-size: 18px;
             font-weight: bold;
+            margin-bottom: 5px;
         }
 
         .cart-item-price {
@@ -77,6 +79,10 @@
             cursor: pointer;
         }
 
+        .cart-item-total {
+            text-align: right;
+        }
+
         .cart-summary {
             padding: 20px;
             border: 1px solid #e0e0e0;
@@ -92,28 +98,44 @@
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 20px;
+            color: #FF4A00; 
         }
 
         .cart-summary .total {
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 20px;
+            color: #333333; 
         }
 
-        .cart-summary button {
-            width: 100%;
-            background-color: #28a745;
+        .cart-summary a.btn {
+            background-color: #28a745; 
             color: white;
             padding: 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .cart-summary a.btn:hover {
+            background-color: #218838;
         }
 
         .alert-container {
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-top: 20px;
+        }
+
+        .alert {
+            background-color: #f8d7da; 
+            color: #721c24; 
+            border-color: #f5c6cb; 
         }
     </style>
 </head>
@@ -131,10 +153,11 @@
                     <a class="nav-link" href="{{ route('dashboard_pelanggan') }}">Beranda</a>
                 </li>
                 <div class="dropdown-menu" aria-labelledby="kategoriDropdown">
-                    @foreach($categories as $category)
-                        <a class="dropdown-item" href="#" data-category-id="{{ $category->id }}">{{ $category->nama }}</a>
-                    @endforeach
-                </div>
+                                @foreach ($categories as $category)
+                                    <a class="dropdown-item" href="#"
+                                        data-category-id="{{ $category->id }}">{{ $category->nama }}</a>
+                                @endforeach
+                            </div>
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Keranjang <span
                             class="badge badge-danger">{{ count(session('cart', [])) }}</span></a>
@@ -142,7 +165,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('about_us') }}">Tentang Kami</a>
                 </li>
-
             </ul>
         </div>
     </nav>
@@ -205,3 +227,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
